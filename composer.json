@@ -1,0 +1,32 @@
+{
+    "name": "crazycat/module-admin",
+    "description": "CrazyCat administrator module",
+    "type": "crazycat-module",
+    "license": [
+        "proprietary"
+    ],
+    "authors": [
+        {
+            "name": "Bruce Z",
+            "email": "zengliwei@163.com",
+            "homepage": "http://crazy-cat.co",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "crazycat/framework": "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CrazyCat\\Admin\\": "code/"
+        },
+        "files": [
+            "registration.php"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    }
+}
