@@ -5,17 +5,19 @@
  * See COPYRIGHT.txt for license details.
  */
 
+namespace CrazyCat\Admin\Controller\Backend\Admin;
+
 /**
  * @category CrazyCat
  * @package CrazyCat\Admin
  * @author Bruce Z <152416319@qq.com>
  * @link http://crazy-cat.co
  */
-return [
-    'namespace' => 'CrazyCat\Admin',
-    'version' => '1.0.0',
-    'depends' => [],
-    'routes' => [
-        'backend' => 'admin'
-    ]
-];
+class Index extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAction {
+
+    protected function run()
+    {
+        
+    }
+
+}

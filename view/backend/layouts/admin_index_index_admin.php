@@ -12,10 +12,5 @@
  * @link http://crazy-cat.co
  */
 return [
-    'namespace' => 'CrazyCat\Admin',
-    'version' => '1.0.0',
-    'depends' => [],
-    'routes' => [
-        'backend' => 'admin'
-    ]
+    'template' => '2columns_left'
 ];

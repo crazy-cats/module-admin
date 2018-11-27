@@ -9,7 +9,7 @@ use CrazyCat\Framework\App\Setup\Component;
 
 /**
  * @category CrazyCat
- * @package CrazyCat\Cms
+ * @package CrazyCat\Admin
  * @author Bruce Z <152416319@qq.com>
  * @link http://crazy-cat.co
  */

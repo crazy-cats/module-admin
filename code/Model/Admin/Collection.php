@@ -5,17 +5,19 @@
  * See COPYRIGHT.txt for license details.
  */
 
+namespace CrazyCat\Admin\Model;
+
 /**
  * @category CrazyCat
  * @package CrazyCat\Admin
  * @author Bruce Z <152416319@qq.com>
  * @link http://crazy-cat.co
  */
-return [
-    'namespace' => 'CrazyCat\Admin',
-    'version' => '1.0.0',
-    'depends' => [],
-    'routes' => [
-        'backend' => 'admin'
-    ]
-];
+class Collection extends \CrazyCat\Framework\App\Module\Model\AbstractCollection {
+
+    protected function construct()
+    {
+        $this->init( 'CrazyCat\Admin\Model\Admin' );
+    }
+
+}
