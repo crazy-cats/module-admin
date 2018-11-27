@@ -17,9 +17,16 @@ class Index extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAc
 
     protected function run()
     {
-        $this->setLayoutFile( $this->session->isLoggedIn() ? 'admin_index_index_admin' : 'admin_index_index_guest'  )
-                ->setPageTitle( __( 'Administrator Login' ) )
-                ->setMetaKeywords( [ 'CrazyCat', 'CMS', __( 'dynamic portal' ) ] )
+        if ( $this->session->isLoggedIn() ) {
+            $this->setLayoutFile( 'admin_index_index_admin' )
+                    ->setPageTitle( sprintf( '%s - %s', 'CrazyCat', __( 'Dashboard' ) ) );
+        }
+        else {
+            $this->setLayoutFile( 'admin_index_index_guest' )
+                    ->setPageTitle( sprintf( '%s - %s', 'CrazyCat', __( 'Administrator Login' ) ) );
+        }
+
+        $this->setMetaKeywords( [ 'CrazyCat', 'CMS', __( 'dynamic portal' ) ] )
                 ->setMetaDescription( __( 'CrazyCat Platform' ) )
                 ->render();
     }
