@@ -7,6 +7,8 @@
 
 namespace CrazyCat\Admin\Controller\Backend\Admin;
 
+use CrazyCat\Admin\Model\Admin\Collection;
+
 /**
  * @category CrazyCat
  * @package CrazyCat\Admin
@@ -17,7 +19,9 @@ class Index extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAc
 
     protected function run()
     {
-        
+        foreach ( $adminCollection as $admin ) {
+            
+        }
     }
 
 }

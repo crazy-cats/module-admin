@@ -13,7 +13,7 @@
     <div class="block-content">
         <form method="post" action="<?php echo getUrl( 'admin/index/login' ) ?>">
             <div class="field">
-                <input type="text" name="username" class="input-box"
+                <input type="text" name="username" class="input-box" autocomplete="off"
                        placeholder="<?php echo htmlEscape( __( 'Username' ) ) ?>" />
             </div>
             <div class="field">
@@ -21,7 +21,7 @@
                        placeholder="<?php echo htmlEscape( __( 'Password' ) ) ?>" />
             </div>
             <div class="actions">
-                <button type="submit"><span><?php echo __( 'Login' ) ?></span></button>
+                <button class="button" type="submit"><span><?php echo __( 'Login' ) ?></span></button>
             </div>
         </form>
     </div>

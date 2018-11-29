@@ -5,7 +5,7 @@
  * See COPYRIGHT.txt for license details.
  */
 
-namespace CrazyCat\Admin\Model;
+namespace CrazyCat\Admin\Model\Admin;
 
 /**
  * @category CrazyCat
