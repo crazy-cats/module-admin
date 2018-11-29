@@ -11,7 +11,7 @@
         <h1><?php echo __( 'Login' ) ?></h1>
     </div>
     <div class="block-content">
-        <form method="post" action="<?php echo getUrl( 'admin/index/login' ) ?>">
+        <form method="post" action="<?php echo getUrl( 'admin/index/loginpost' ) ?>">
             <div class="field">
                 <input type="text" name="username" class="input-box" autocomplete="off"
                        placeholder="<?php echo htmlEscape( __( 'Username' ) ) ?>" />

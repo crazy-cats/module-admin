@@ -7,8 +7,6 @@
 
 namespace CrazyCat\Admin\Controller\Backend\Index;
 
-use CrazyCat\Admin\Model\Admin;
-
 /**
  * @category CrazyCat
  * @package CrazyCat\Admin
@@ -19,17 +17,14 @@ class Login extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAc
 
     protected function run()
     {
-        try {
-            $post = $this->request->getPost();
-            $admin = $this->objectManager->create( Admin::class )->login( $post['username'], $post['password'] );
-            $this->session->setAdminId( $admin->getData( 'id' ) );
-            $this->messenger->addSuccess( __( 'Logged in successfully.' ) );
+        if ( $this->session->isLoggedIn() ) {
+            $this->redirect( 'admin/index' );
         }
-        catch ( \Exception $e ) {
-            $this->messenger->addError( $e->getMessage() );
+        else {
+            $this->setPageTitle( sprintf( '%s - %s', 'CrazyCat', __( 'Administrator Login' ) ) )->setMetaKeywords( [ 'CrazyCat', 'CMS', __( 'dynamic portal' ) ] )
+                    ->setMetaDescription( __( 'CrazyCat Platform' ) )
+                    ->render();
         }
-
-        $this->redirect( 'admin/index/index' );
     }
 
 }

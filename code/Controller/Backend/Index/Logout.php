@@ -21,7 +21,7 @@ class Logout extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractA
             $this->session->destroy();
             $this->messenger->addSuccess( __( 'Logged out successfully.' ) );
         }
-        $this->redirect( 'admin/index/index' );
+        $this->redirect( 'admin/index/login' );
     }
 
 }
