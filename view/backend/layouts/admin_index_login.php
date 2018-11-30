@@ -12,7 +12,7 @@
  * @link http://crazy-cat.co
  */
 return [
-    'template' => '1column',
+    'template' => 'home',
     'blocks' => [
         'main' => [
             [ 'class' => 'CrazyCat\Index\Block\Template', 'data' => [ 'template' => 'CrazyCat\Admin::login' ] ]
