@@ -13,7 +13,7 @@
  */
 return [
         [
-        'label' => __( 'Administrator' ), 'identifier' => 'admin', 'url' => getUrl( 'admin/admin' ),
+        'label' => __( 'Admin' ), 'identifier' => 'admin',
         'children' => [
                 [ 'label' => __( 'Administrators' ), 'identifier' => 'admin-list', 'url' => getUrl( 'admin/admin' ) ],
                 [ 'label' => __( 'Administrator Roles' ), 'identifier' => 'admin-roles', 'url' => getUrl( 'admin/adminrole' ) ]
