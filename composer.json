@@ -14,7 +14,8 @@
         }
     ],
     "require": {
-        "crazycat/framework": "~1.0"
+        "crazycat/framework": "~1.0",
+        "crazycat/module-index": "~1.0"
     },
     "autoload": {
         "psr-4": {

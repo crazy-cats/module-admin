@@ -7,18 +7,20 @@
 
 namespace CrazyCat\Admin\Controller\Backend\Admin;
 
+use CrazyCat\Admin\Block\Admin\Grid as GridBlock;
+use CrazyCat\Admin\Model\Admin\Collection;
+
 /**
  * @category CrazyCat
  * @package CrazyCat\Admin
  * @author Bruce Z <152416319@qq.com>
  * @link http://crazy-cat.co
  */
-class Index extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAction {
+class Grid extends \CrazyCat\Index\Controller\Backend\AbstractGridAction {
 
-    protected function run()
+    protected function construct()
     {
-        $this->setPageTitle( sprintf( '%s - %s', 'CrazyCat', __( 'Administrator List' ) ) )
-                ->render();
+        $this->init( Collection::class, GridBlock::class );
     }
 
 }
