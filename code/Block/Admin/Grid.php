@@ -21,7 +21,7 @@ class Grid extends \CrazyCat\Index\Block\Backend\AbstractGrid {
     {
         return [
                 [ 'name' => 'id', 'label' => __( 'ID' ), 'filter' => 'text', 'sort' => true ],
-                [ 'name' => 'name', 'label' => __( 'Name' ), 'filter' => 'text', 'sort' => false ],
+                [ 'name' => 'name', 'label' => __( 'Name' ), 'filter' => 'text', 'sort' => true ],
                 [ 'name' => 'username', 'label' => __( 'Username' ), 'filter' => 'text', 'sort' => true ] ];
     }
 
