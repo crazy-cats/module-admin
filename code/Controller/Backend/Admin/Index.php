@@ -17,8 +17,7 @@ class Index extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAc
 
     protected function run()
     {
-        $this->setPageTitle( sprintf( '%s - %s', 'CrazyCat', __( 'Administrator List' ) ) )
-                ->render();
+        $this->setPageTitle( __( 'Administrator List' ) )->render();
     }
 
 }
