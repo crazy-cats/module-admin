@@ -14,6 +14,9 @@
 return [
     'template' => '2columns_left',
     'blocks' => [
+        'header' => [
+                [ 'class' => 'CrazyCat\Index\Block\Template', 'data' => [ 'template' => 'CrazyCat\Admin::admin/header' ] ]
+        ],
         'main' => [
                 [ 'class' => 'CrazyCat\Admin\Block\Admin\Grid' ]
         ]
