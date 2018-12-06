@@ -15,7 +15,7 @@ namespace CrazyCat\Admin\Block\Admin;
  */
 class Grid extends \CrazyCat\Framework\App\Module\Block\Backend\AbstractGrid {
 
-    const COOKIES_BOOKMARK_KEY = 'admin';
+    const BOOKMARK_KEY = 'admin';
 
     /**
      * @return array
