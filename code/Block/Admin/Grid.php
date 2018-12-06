@@ -25,7 +25,11 @@ class Grid extends \CrazyCat\Framework\App\Module\Block\Backend\AbstractGrid {
         return [
                 [ 'name' => 'id', 'label' => __( 'ID' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'eq' ] ],
                 [ 'name' => 'name', 'label' => __( 'Name' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'like' ] ],
-                [ 'name' => 'username', 'label' => __( 'Username' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'like' ] ] ];
+                [ 'name' => 'username', 'label' => __( 'Username' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'like' ] ],
+                [ 'name' => 'action', 'label' => __( 'Actions' ), 'actions' => [
+                        [ 'name' => 'view', 'label' => __( 'View' ), 'url' => getUrl( 'admin/admin/view' ) ],
+                        [ 'name' => 'delete', 'label' => __( 'Delete' ), 'confirm' => __( 'Sure you want to remove this item?' ), 'url' => getUrl( 'admin/admin/delete' ) ]
+                ] ] ];
     }
 
     /**
