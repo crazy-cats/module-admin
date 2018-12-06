@@ -13,7 +13,7 @@ namespace CrazyCat\Admin\Block\Admin;
  * @author Bruce Z <152416319@qq.com>
  * @link http://crazy-cat.co
  */
-class Grid extends \CrazyCat\Admin\Block\AbstractGrid {
+class Grid extends \CrazyCat\Framework\App\Module\Block\Backend\AbstractGrid {
 
     const COOKIES_BOOKMARK_KEY = 'admin';
 
