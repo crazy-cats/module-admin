@@ -15,7 +15,12 @@ return [
     'template' => '2columns_left',
     'blocks' => [
         'header' => [
-                [ 'class' => 'CrazyCat\Index\Block\Template', 'data' => [ 'template' => 'CrazyCat\Admin::admin_role/header' ] ]
+                [ 'class' => 'CrazyCat\Index\Block\Template', 'data' => [
+                    'template' => 'CrazyCat\Index::header_buttons',
+                    'buttons' => [
+                        'new' => [ 'label' => __( 'Create New' ), 'action' => [ 'type' => 'redirect', 'params' => [ 'url' => getUrl( 'admin/admin_role/edit' ) ] ] ]
+                    ]
+                ] ]
         ],
         'main' => [
                 [ 'class' => 'CrazyCat\Admin\Block\Admin\Role\Grid' ]

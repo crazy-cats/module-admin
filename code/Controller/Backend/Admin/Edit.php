@@ -26,9 +26,11 @@ class Edit extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAct
             $model->load( $id );
             if ( !$model->getId() ) {
                 $this->messenger->addError( __( 'Item with specified ID does not exist.' ) );
-                $this->redirect( 'admin/admin' );
+                return $this->redirect( 'admin/admin' );
             }
         }
+
+        $this->registry->register( 'current_model', $model );
 
         $pageTitle = $model->getId() ?
                 __( 'Edit Administrator `%1` [ ID: %2 ]', [ $model->getName(), $model->getId() ] ) :

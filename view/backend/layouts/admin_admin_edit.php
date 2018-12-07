@@ -14,8 +14,17 @@
 return [
     'template' => '2columns_left',
     'blocks' => [
+        'header' => [
+                [ 'class' => 'CrazyCat\Index\Block\Template', 'data' => [
+                    'template' => 'CrazyCat\Index::header_buttons',
+                    'buttons' => [
+                        'save' => [ 'label' => __( 'Save' ), 'action' => [ 'type' => 'save', 'params' => [ 'target' => '#edit-form' ] ] ],
+                        'save_continue' => [ 'label' => __( 'Save and Continue' ), 'action' => [ 'type' => 'saveContinue', 'params' => [ 'target' => '#edit-form' ] ] ]
+                    ]
+                ] ]
+        ],
         'main' => [
-                [ 'class' => 'CrazyCat\Admin\Block\Admin\View' ]
+                [ 'class' => 'CrazyCat\Admin\Block\Admin\Edit' ]
         ]
     ]
 ];

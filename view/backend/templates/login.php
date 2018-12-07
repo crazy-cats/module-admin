@@ -13,11 +13,11 @@
     <div class="block-content">
         <form method="post" action="<?php echo getUrl( 'admin/index/loginpost' ) ?>">
             <div class="field">
-                <input type="text" name="username" class="input-box" autocomplete="off"
+                <input type="text" name="username" class="input-text" autocomplete="off"
                        placeholder="<?php echo htmlEscape( __( 'Username' ) ) ?>" />
             </div>
             <div class="field">
-                <input type="password" name="password" class="input-box"
+                <input type="password" name="password" class="input-text"
                        placeholder="<?php echo htmlEscape( __( 'Password' ) ) ?>" />
             </div>
             <div class="actions">
