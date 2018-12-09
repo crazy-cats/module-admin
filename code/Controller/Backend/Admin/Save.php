@@ -19,12 +19,18 @@ class Save extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAct
 
     protected function run()
     {
-        /* @var $model \CrazyCat\Framework\App\Module\Model\AbstractModel */
+        /* @var $model \CrazyCat\Admin\Model\Admin */
         $model = $this->objectManager->create( Model::class );
 
         $data = $this->request->getPost( 'data' );
         if ( empty( $data[$model->getIdFieldName()] ) ) {
             unset( $data[$model->getIdFieldName()] );
+        }
+        if ( empty( $data['password'] ) ) {
+            unset( $data['password'] );
+        }
+        else {
+            $data['password'] = $model->encryptPassword( $data['password'] );
         }
 
         try {
