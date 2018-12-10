@@ -8,6 +8,7 @@
 namespace CrazyCat\Admin\Controller\Backend\Admin;
 
 use CrazyCat\Admin\Model\Admin as Model;
+use CrazyCat\Framework\App\Url;
 
 /**
  * @category CrazyCat
@@ -34,17 +35,17 @@ class Save extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAct
         }
 
         try {
-            $model->addData( $data )->save();
+            $id = $model->addData( $data )->save()->getId();
             $this->messenger->addSuccess( __( 'Successfully saved.' ) );
-
-            if ( !$this->request->getPost( 'to_list' ) ) {
-                return $this->redirect( 'admin/admin/edit', [ 'id' => $model->getId() ] );
-            }
         }
         catch ( \Exception $e ) {
+            $id = isset( $data[Url::ID_NAME] ) ? $data[Url::ID_NAME] : null;
             $this->messenger->addError( $e->getMessage() );
         }
 
+        if ( !$this->request->getPost( 'to_list' ) && $id !== null ) {
+            return $this->redirect( 'admin/admin_role/edit', [ Url::ID_NAME => $id ] );
+        }
         return $this->redirect( 'admin/admin' );
     }
 
