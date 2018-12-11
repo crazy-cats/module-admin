@@ -45,6 +45,22 @@ class Role extends \CrazyCat\Framework\App\Module\Model\AbstractModel {
         $this->init( 'admin_role', 'admin_role' );
     }
 
+    protected function beforeSave()
+    {
+        parent::beforeSave();
+
+        $this->setData( 'permissions', json_encode( $this->getData( 'permissions' ) ) );
+
+        return $this;
+    }
+
+    protected function afterLoad()
+    {
+        $this->setData( 'permissions', json_decode( $this->getData( 'permissions' ), true ) );
+
+        return parent::afterLoad();
+    }
+
     /**
      * @return array
      */
