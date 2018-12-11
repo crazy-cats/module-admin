@@ -50,7 +50,7 @@ class AdminRoles {
             if ( $excludeId === $roleModel->getId() ) {
                 continue;
             }
-            $roles[] = [ 'label' => sprintf( '%s%s [ ID: %d ]', str_repeat( Html::htmlSelectSpace(), $level * 4 ), $roleModel->getData( 'title' ), $roleModel->getId() ), 'value' => $roleModel->getId() ];
+            $roles[] = [ 'label' => sprintf( '%s%s [ ID: %d ]', str_repeat( Html::spaceString(), $level * 4 ), $roleModel->getData( 'title' ), $roleModel->getId() ), 'value' => $roleModel->getId() ];
             $roles = array_merge( $roles, $this->getSortedRoles( $roleGroups, $excludeId, $roleModel->getId(), $level + 1 ) );
         }
         return $roles;
