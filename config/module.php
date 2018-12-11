@@ -19,6 +19,6 @@ return [
         'backend' => 'admin'
     ],
     'events' => [
-        'backend_controller_execute_before' => 'CrazyCat\Admin\Observer\CheckLogin'
+        'backend_controller_execute_before' => 'CrazyCat\Admin\Observer\CheckAccessRight'
     ]
 ];

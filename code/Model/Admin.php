@@ -7,6 +7,11 @@
 
 namespace CrazyCat\Admin\Model;
 
+use CrazyCat\Admin\Model\Admin\Role;
+use CrazyCat\Framework\App\Db\Manager as DbManager;
+use CrazyCat\Framework\App\EventManager;
+use CrazyCat\Framework\App\ObjectManager;
+
 /**
  * @category CrazyCat
  * @package CrazyCat\Admin
@@ -14,6 +19,23 @@ namespace CrazyCat\Admin\Model;
  * @link http://crazy-cat.co
  */
 class Admin extends \CrazyCat\Framework\App\Module\Model\AbstractModel {
+
+    /**
+     * @var \CrazyCat\Framework\App\ObjectManager
+     */
+    protected $objectManager;
+
+    /**
+     * @var \CrazyCat\Admin\Model\Admin\Role
+     */
+    protected $role;
+
+    public function __construct( ObjectManager $objectManager, EventManager $eventManager, DbManager $dbManager, array $data = [] )
+    {
+        parent::__construct( $eventManager, $dbManager, $data );
+
+        $this->objectManager = $objectManager;
+    }
 
     /**
      * @return void
@@ -55,6 +77,20 @@ class Admin extends \CrazyCat\Framework\App\Module\Model\AbstractModel {
             }
         }
         throw new \Exception( __( 'User does not exist or password does not match the username.' ) );
+    }
+
+    /**
+     * @return \CrazyCat\Admin\Model\Admin\Role|null
+     */
+    public function getRole()
+    {
+        if ( $this->role === null ) {
+            if ( !( $roleId = $this->getData( 'role_id' ) ) ) {
+                throw new \Exception( __( 'Impossible to get a role without role ID.' ) );
+            }
+            $this->role = $this->objectManager->create( Role::class )->load( $roleId );
+        }
+        return $this->role;
     }
 
 }

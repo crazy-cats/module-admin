@@ -16,7 +16,7 @@ use CrazyCat\Framework\App\Io\Http\Request;
  * @author Bruce Z <152416319@qq.com>
  * @link http://crazy-cat.co
  */
-class CheckLogin {
+class CheckAccessRight {
 
     /**
      * @var \CrazyCat\Framework\App\Io\Http\Request
@@ -36,8 +36,15 @@ class CheckLogin {
 
     public function execute( $data )
     {
-        if ( !in_array( $this->request->getFullPath(), [ 'admin_index_login', 'admin_index_loginpost', 'admin_index_logout' ] ) &&
-                !$this->session->isLoggedIn() ) {
+        $path = $this->request->getFullPath();
+
+        if ( $this->session->isLoggedIn() ) {
+            if ( !$this->session->getAdmin()->getRole()->getData( 'is_super' ) &&
+                    !in_array( $path, $this->session->getAdmin()->getRole()->getData( 'permissions' ) ) ) {
+                $data['action']->skipRunning()->redirect( 'admin' );
+            }
+        }
+        else if ( !in_array( $path, [ 'admin_index_login', 'admin_index_loginpost', 'admin_index_logout' ] ) ) {
             $data['action']->skipRunning()->redirect( 'admin/index/login' );
         }
     }
