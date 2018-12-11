@@ -45,7 +45,7 @@ class Edit extends \CrazyCat\Framework\App\Module\Block\Backend\AbstractEdit {
     {
         return [
                 [ 'name' => 'id', 'label' => __( 'ID' ), 'type' => 'hidden' ],
-                [ 'name' => 'title', 'label' => __( 'Title' ), 'type' => 'text' ],
+                [ 'name' => 'title', 'label' => __( 'Title' ), 'type' => 'text', 'validation' => [ 'required' => true ] ],
                 [ 'name' => 'parent_id', 'label' => __( 'Parent' ), 'type' => 'select', 'options' => array_merge( [ [ 'label' => '[ ROOT ]', 'value' => 0 ] ], $this->adminRoles->toOptionArray( $this->registry->registry( 'current_model' )->getId() ) ) ],
                 [ 'name' => 'permissions', 'label' => __( 'Permissions' ), 'type' => 'multiselect', 'options' => Tools::toOptionsArray( $this->role->getAllPermissions() ) ]
         ];

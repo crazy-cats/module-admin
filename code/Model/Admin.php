@@ -46,6 +46,20 @@ class Admin extends \CrazyCat\Framework\App\Module\Model\AbstractModel {
     }
 
     /**
+     * @return void
+     */
+    protected function beforeSave()
+    {
+        parent::beforeSave();
+
+        $now = date( 'Y-m-d H:i:s' );
+        $this->setData( 'updated_at', $now );
+        if ( !$this->getId() ) {
+            $this->setData( 'created_at', $now );
+        }
+    }
+
+    /**
      * @param string $adminPasswordHash
      * @param string $inputPassword
      * @return boolean

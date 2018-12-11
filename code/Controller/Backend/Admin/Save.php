@@ -44,7 +44,7 @@ class Save extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAct
         }
 
         if ( !$this->request->getPost( 'to_list' ) && $id !== null ) {
-            return $this->redirect( 'admin/admin_role/edit', [ Url::ID_NAME => $id ] );
+            return $this->redirect( 'admin/admin/edit', [ Url::ID_NAME => $id ] );
         }
         return $this->redirect( 'admin/admin' );
     }
