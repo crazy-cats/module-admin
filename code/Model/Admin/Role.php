@@ -62,6 +62,11 @@ class Role extends \CrazyCat\Framework\App\Module\Model\AbstractModel {
         parent::afterLoad();
     }
 
+    /**
+     * Set index page and logout function as always in permissions
+     * 
+     * @return array
+     */
     public function getPermissions()
     {
         return array_merge( [ 'admin/index/index', 'admin/index/logout' ], $this->getData( 'permissions' ) );
