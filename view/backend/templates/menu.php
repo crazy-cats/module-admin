@@ -12,8 +12,8 @@
 
 <script type="text/javascript">
 // <![CDATA[
-    require( [ 'CrazyCat/Admin/js/menu' ], function( menu ) {
-        menu( {el: '#main-menu'} );
+    require( [ 'utility' ], function( utility ) {
+        utility.mainMenu( {el: '#main-menu'} );
     } );
 // ]]>
 </script>
