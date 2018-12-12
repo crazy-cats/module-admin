@@ -22,6 +22,10 @@ class Grid extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractGri
     {
         $this->init( Collection::class, GridBlock::class );
 
+        /**
+         * Non-super administrator is only able to access roles
+         *     of which level are lower than him/her.
+         */
         $adminRole = $this->session->getAdmin()->getRole();
         if ( !$adminRole->getIsSuper() ) {
             $this->collection->addFieldToFilter( 'path', [ 'like' => $adminRole->getPath() . '/%' ] );

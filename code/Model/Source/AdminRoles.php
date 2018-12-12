@@ -8,6 +8,7 @@
 namespace CrazyCat\Admin\Model\Source;
 
 use CrazyCat\Admin\Model\Admin\Role\Collection;
+use CrazyCat\Admin\Model\Session;
 use CrazyCat\Framework\App\ObjectManager;
 use CrazyCat\Framework\Utility\Html;
 
@@ -29,9 +30,29 @@ class AdminRoles {
      */
     private $roleCollecion;
 
-    public function __construct( ObjectManager $objectManager )
+    /**
+     * @var \CrazyCat\Admin\Model\Session
+     */
+    private $session;
+
+    public function __construct( Session $session, ObjectManager $objectManager )
     {
         $this->roleCollecion = $objectManager->create( Collection::class )->addOrder( 'title' );
+        $this->session = $session;
+
+        if ( $session->getAdmin() ) {
+            /**
+             * Non-super administrator is only able to see roles
+             *     of which level are lower than him/her or the one
+             *     he/she belongs to.
+             */
+            $adminRole = $session->getAdmin()->getRole();
+            if ( !$adminRole->getIsSuper() ) {
+                $this->roleCollecion->addFieldToFilter( [
+                        [ 'field' => 'path', 'conditions' => [ 'like' => $adminRole->getPath() . '/%' ] ],
+                        [ 'field' => 'id', 'conditions' => [ 'eq' => $adminRole->getId() ] ] ] );
+            }
+        }
     }
 
     /**
@@ -70,7 +91,9 @@ class AdminRoles {
                 }
                 $roleGroups[$roleModel->getData( 'parent_id' )][] = $roleModel;
             }
-            $this->options = $this->getSortedRoles( $roleGroups, $excludeId );
+            $adminRole = $this->session->getAdmin()->getRole();
+            $rootRoleId = $adminRole->getIsSuper() ? 0 : $adminRole->getParentId();
+            $this->options = $this->getSortedRoles( $roleGroups, $excludeId, $rootRoleId );
         }
         return $this->options;
     }

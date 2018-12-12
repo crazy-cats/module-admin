@@ -9,6 +9,7 @@ namespace CrazyCat\Admin\Controller\Backend\Admin;
 
 use CrazyCat\Admin\Block\Admin\Grid as GridBlock;
 use CrazyCat\Admin\Model\Admin\Collection;
+use CrazyCat\Admin\Model\Admin\Role\Collection as RoleCollection;
 
 /**
  * @category CrazyCat
@@ -21,6 +22,27 @@ class Grid extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractGri
     protected function construct()
     {
         $this->init( Collection::class, GridBlock::class );
+
+        /**
+         * Non-super administrator is only able to see records under roles
+         *     of which level are lower than him/her, or the one he/she 
+         *     belongs to.
+         */
+        $admin = $this->session->getAdmin();
+        $adminRole = $admin->getRole();
+        if ( !$adminRole->getIsSuper() ) {
+            $childRoleIds = $this->objectManager->create( RoleCollection::class )
+                    ->addFieldToFilter( 'path', [ 'like' => $adminRole->getPath() . '/%' ] )
+                    ->getAllIds();
+            if ( empty( $childRoleIds ) ) {
+                $this->collection->addFieldToFilter( 'id', [ 'eq' => $admin->getId() ] );
+            }
+            else {
+                $this->collection->addFieldToFilter( [
+                        [ 'field' => 'id', 'conditions' => [ 'eq' => $admin->getId() ] ],
+                        [ 'field' => 'role_id', 'conditions' => [ 'in' => $childRoleIds ] ] ] );
+            }
+        }
     }
 
 }

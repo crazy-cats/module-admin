@@ -7,10 +7,10 @@
 
 namespace CrazyCat\Admin\Block\Admin\Role;
 
-use CrazyCat\Admin\Model\Admin\Role;
+use CrazyCat\Admin\Model\Session;
 use CrazyCat\Admin\Model\Source\AdminRoles;
+use CrazyCat\Admin\Model\Source\Permissions;
 use CrazyCat\Framework\App\Theme\Block\Context;
-use CrazyCat\Framework\Utility\Tools;
 
 /**
  * @category CrazyCat
@@ -26,16 +26,22 @@ class Edit extends \CrazyCat\Framework\App\Module\Block\Backend\AbstractEdit {
     protected $adminRoles;
 
     /**
-     * @var \CrazyCat\Admin\Model\Admin\Role
+     * @var \CrazyCat\Admin\Model\Source\Permissions
      */
-    protected $role;
+    protected $permissions;
 
-    public function __construct( AdminRoles $adminRoles, Role $role, Context $context, array $data = [] )
+    /**
+     * @var \CrazyCat\Admin\Model\Session
+     */
+    private $session;
+
+    public function __construct( Session $session, AdminRoles $adminRoles, Permissions $permissions, Context $context, array $data = [] )
     {
         parent::__construct( $context, $data );
 
         $this->adminRoles = $adminRoles;
-        $this->role = $role;
+        $this->permissions = $permissions;
+        $this->session = $session;
     }
 
     /**
@@ -43,11 +49,19 @@ class Edit extends \CrazyCat\Framework\App\Module\Block\Backend\AbstractEdit {
      */
     public function getFields()
     {
+        /**
+         * Only super administrator can assign a role under ROOT.
+         */
+        $parentOptions = $this->adminRoles->toOptionArray( $this->registry->registry( 'current_model' )->getId() );
+        if ( $this->session->getAdmin()->getRole()->getIsSuper() ) {
+            array_unshift( $parentOptions, [ 'label' => '[ ROOT ]', 'value' => 0 ] );
+        }
+
         return [
                 [ 'name' => 'id', 'label' => __( 'ID' ), 'type' => 'hidden' ],
                 [ 'name' => 'title', 'label' => __( 'Title' ), 'type' => 'text', 'validation' => [ 'required' => true ] ],
-                [ 'name' => 'parent_id', 'label' => __( 'Parent' ), 'type' => 'select', 'options' => array_merge( [ [ 'label' => '[ ROOT ]', 'value' => 0 ] ], $this->adminRoles->toOptionArray( $this->registry->registry( 'current_model' )->getId() ) ) ],
-                [ 'name' => 'permissions', 'label' => __( 'Permissions' ), 'type' => 'multiselect', 'options' => Tools::toOptionsArray( $this->role->getAllPermissions() ) ]
+                [ 'name' => 'parent_id', 'label' => __( 'Parent' ), 'type' => 'select', 'options' => $parentOptions ],
+                [ 'name' => 'permissions', 'label' => __( 'Permissions' ), 'type' => 'multiselect', 'options' => $this->permissions->toOptionArray() ]
         ];
     }
 
