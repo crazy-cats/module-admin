@@ -15,8 +15,8 @@ return [
         [
         'label' => __( 'Admin' ), 'identifier' => 'admin',
         'children' => [
-                [ 'label' => __( 'Administrators' ), 'identifier' => 'admin-list', 'url' => getUrl( 'admin/admin' ) ],
-                [ 'label' => __( 'Administrator Roles' ), 'identifier' => 'admin-roles', 'url' => getUrl( 'admin/admin_role' ) ]
+                [ 'label' => __( 'Administrators' ), 'identifier' => 'admin/admin/index', 'url' => getUrl( 'admin/admin' ) ],
+                [ 'label' => __( 'Administrator Roles' ), 'identifier' => 'admin/admin_role/index', 'url' => getUrl( 'admin/admin_role' ) ]
         ] ],
-        [ 'label' => __( 'Logout' ), 'identifier' => 'logout', 'url' => getUrl( 'admin/index/logout' ) ]
+        [ 'label' => __( 'Logout' ), 'identifier' => 'admin/index/logout', 'url' => getUrl( 'admin/index/logout' ) ]
 ];

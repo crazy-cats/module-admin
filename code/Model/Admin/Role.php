@@ -62,4 +62,9 @@ class Role extends \CrazyCat\Framework\App\Module\Model\AbstractModel {
         parent::afterLoad();
     }
 
+    public function getPermissions()
+    {
+        return array_merge( [ 'admin/index/index', 'admin/index/logout' ], $this->getData( 'permissions' ) );
+    }
+
 }

@@ -57,7 +57,7 @@ class Permissions {
             if ( $this->session->getAdmin() ) {
                 $adminRole = $this->session->getAdmin()->getRole();
                 if ( !$adminRole->getIsSuper() ) {
-                    $actions = array_intersect( $actions, $adminRole->getData( 'permissions' ) );
+                    $actions = array_intersect( $actions, $adminRole->getPermissions() );
                 }
             }
 

@@ -46,7 +46,7 @@ class CheckAccessRight {
         $requestPath = $this->request->getFullPath( '/' );
         if ( $this->session->isLoggedIn() ) {
             if ( !$this->session->getAdmin()->getRole()->getData( 'is_super' ) &&
-                    !in_array( $requestPath, $this->session->getAdmin()->getRole()->getData( 'permissions' ) ) ) {
+                    !in_array( $requestPath, array_merge( [ 'admin/index/index' ], $this->session->getAdmin()->getRole()->getPermissions() ) ) ) {
                 $this->messenger->addError( __( 'You do not have the permission.' ) );
                 $data['action']->skipRunning()->redirect( 'admin' );
             }
