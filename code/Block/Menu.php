@@ -9,6 +9,7 @@ namespace CrazyCat\Admin\Block;
 
 use CrazyCat\Framework\App\Module\Manager as ModuleManager;
 use CrazyCat\Framework\App\Theme\Block\Context;
+use CrazyCat\Framework\App\Translator;
 
 /**
  * @category CrazyCat
@@ -27,11 +28,17 @@ class Menu extends \CrazyCat\Index\Block\Menu {
      */
     protected $moduleManager;
 
-    public function __construct( ModuleManager $moduleManager, Context $context, array $data = [] )
+    /**
+     * @var \CrazyCat\Framework\App\Translator
+     */
+    protected $translator;
+
+    public function __construct( Translator $translator, ModuleManager $moduleManager, Context $context, array $data = [] )
     {
         parent::__construct( $context, $data );
 
         $this->moduleManager = $moduleManager;
+        $this->translator = $translator;
     }
 
     /**
@@ -39,7 +46,7 @@ class Menu extends \CrazyCat\Index\Block\Menu {
      */
     protected function getMenuData()
     {
-        $cacheMenuData = $this->cacheFactory->create( self::CACHE_MENU_DATA );
+        $cacheMenuData = $this->cacheFactory->create( self::CACHE_MENU_DATA . '-' . $this->translator->getLangCode() );
         if ( empty( $menuData = $cacheMenuData->getData() ) ) {
             foreach ( $this->moduleManager->getEnabledModules() as $module ) {
                 if ( is_file( ( $file = $module->getData( 'dir' ) . DS . 'config' . DS . 'backend' . DS . 'menu.php' ) ) &&

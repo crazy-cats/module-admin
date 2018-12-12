@@ -17,7 +17,6 @@ return [
         'children' => [
                 [ 'label' => __( 'Administrators' ), 'identifier' => 'admin-list', 'url' => getUrl( 'admin/admin' ) ],
                 [ 'label' => __( 'Administrator Roles' ), 'identifier' => 'admin-roles', 'url' => getUrl( 'admin/admin_role' ) ]
-        ]
-    ],
-        [ 'label' => 'Logout', 'identifier' => 'logout', 'url' => getUrl( 'admin/index/logout' ) ]
+        ] ],
+        [ 'label' => __( 'Logout' ), 'identifier' => 'logout', 'url' => getUrl( 'admin/index/logout' ) ]
 ];
