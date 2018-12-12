@@ -59,12 +59,14 @@ class Upgrade extends \CrazyCat\Framework\App\Module\Setup\AbstractUpgrade {
         $columns = [
                 [ 'name' => 'id', 'type' => MySql::COL_TYPE_INT, 'unsign' => true, 'null' => false, 'auto_increment' => true ],
                 [ 'name' => 'parent_id', 'type' => MySql::COL_TYPE_INT, 'unsign' => true, 'null' => false, 'default' => 0 ],
+                [ 'name' => 'path', 'type' => MySql::COL_TYPE_VARCHAR, 'length' => 32 ],
                 [ 'name' => 'title', 'type' => MySql::COL_TYPE_VARCHAR, 'length' => 32, 'null' => false ],
                 [ 'name' => 'is_super', 'type' => MySql::COL_TYPE_TINYINT, 'length' => 1, 'unsign' => true, 'null' => false, 'default' => 0 ],
                 [ 'name' => 'permissions', 'type' => MySql::COL_TYPE_TEXT ]
         ];
         $indexes = [
                 [ 'columns' => [ 'parent_id' ], 'type' => MySql::INDEX_NORMAL ],
+                [ 'columns' => [ 'path' ], 'type' => MySql::INDEX_NORMAL ],
                 [ 'columns' => [ 'title' ], 'type' => MySql::INDEX_FULLTEXT ]
         ];
         $this->conn->createTable( 'admin_role', $columns, $indexes );
@@ -93,6 +95,7 @@ class Upgrade extends \CrazyCat\Framework\App\Module\Setup\AbstractUpgrade {
 
         $roleId = $this->conn->insert( 'admin_role', [
             'title' => 'Super Administrator',
+            'path' => '1',
             'is_super' => 1 ] );
 
         $this->conn->insert( 'admin', [

@@ -21,6 +21,11 @@ class Grid extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractGri
     protected function construct()
     {
         $this->init( Collection::class, GridBlock::class );
+
+        $adminRole = $this->session->getAdmin()->getRole();
+        if ( !$adminRole->getIsSuper() ) {
+            $this->collection->addFieldToFilter( 'path', [ 'like' => $adminRole->getPath() . '/%' ] );
+        }
     }
 
 }

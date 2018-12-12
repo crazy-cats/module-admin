@@ -5,9 +5,9 @@
  * See COPYRIGHT.txt for license details.
  */
 
-namespace CrazyCat\Admin\Controller\Backend\Admin;
+namespace CrazyCat\Admin\Controller\Backend\AdminRole;
 
-use CrazyCat\Admin\Model\Admin as Model;
+use CrazyCat\Admin\Model\Admin\Role as Model;
 use CrazyCat\Framework\App\Io\Http\Response;
 
 /**

@@ -9,6 +9,7 @@ namespace CrazyCat\Admin\Observer;
 
 use CrazyCat\Admin\Model\Session;
 use CrazyCat\Framework\App\Io\Http\Request;
+use CrazyCat\Framework\App\Session\Messenger;
 
 /**
  * @category CrazyCat
@@ -17,6 +18,11 @@ use CrazyCat\Framework\App\Io\Http\Request;
  * @link http://crazy-cat.co
  */
 class CheckAccessRight {
+
+    /**
+     * @var \CrazyCat\Framework\App\Session\Messenger
+     */
+    private $messenger;
 
     /**
      * @var \CrazyCat\Framework\App\Io\Http\Request
@@ -28,23 +34,24 @@ class CheckAccessRight {
      */
     private $session;
 
-    public function __construct( Request $request, Session $session )
+    public function __construct( Messenger $messenger, Request $request, Session $session )
     {
+        $this->messenger = $messenger;
         $this->request = $request;
         $this->session = $session;
     }
 
     public function execute( $data )
     {
-        $path = $this->request->getFullPath();
-
+        $requestPath = $this->request->getFullPath( '/' );
         if ( $this->session->isLoggedIn() ) {
             if ( !$this->session->getAdmin()->getRole()->getData( 'is_super' ) &&
-                    !in_array( $path, $this->session->getAdmin()->getRole()->getData( 'permissions' ) ) ) {
+                    !in_array( $requestPath, $this->session->getAdmin()->getRole()->getData( 'permissions' ) ) ) {
+                $this->messenger->addError( __( 'You do not have the permission.' ) );
                 $data['action']->skipRunning()->redirect( 'admin' );
             }
         }
-        else if ( !in_array( $path, [ 'admin_index_login', 'admin_index_loginpost', 'admin_index_logout' ] ) ) {
+        else if ( !in_array( $requestPath, [ 'admin/index/login', 'admin/index/loginpost', 'admin/index/logout' ] ) ) {
             $data['action']->skipRunning()->redirect( 'admin/index/login' );
         }
     }
