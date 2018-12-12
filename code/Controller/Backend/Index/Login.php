@@ -23,7 +23,7 @@ class Login extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAc
         else {
             $this->setPageTitle( __( 'Administrator Login' ) )
                     ->setMetaKeywords( [ 'CrazyCat', 'CMS', __( 'dynamic portal' ) ] )
-                    ->setMetaDescription( __( 'CrazyCat Platform' ) )
+                    ->setMetaDescription( 'CrazyCat' )
                     ->render();
         }
     }

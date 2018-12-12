@@ -17,6 +17,10 @@
         "crazycat/framework": "~1.0",
         "crazycat/module-index": "~1.0"
     },
+    "require-dev": {
+        "crazycat/framework": "dev-master",
+        "crazycat/module-index": "dev-master"
+    },
     "autoload": {
         "psr-4": {
             "CrazyCat\\Admin\\": "code/"
