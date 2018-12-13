@@ -49,6 +49,20 @@ class Menu extends \CrazyCat\Index\Block\Menu {
     }
 
     /**
+     * @param array $menuData
+     * @return array
+     */
+    protected function processIdentifier( &$menuData )
+    {
+        foreach ( $menuData as $identifier => &$itemData ) {
+            $itemData['identifier'] = $identifier;
+            if ( isset( $itemData['children'] ) && is_array( $itemData ) ) {
+                $this->processIdentifier( $itemData['children'] );
+            }
+        }
+    }
+
+    /**
      * @return array
      */
     protected function getFullMenuData()
@@ -58,9 +72,10 @@ class Menu extends \CrazyCat\Index\Block\Menu {
             foreach ( $this->moduleManager->getEnabledModules() as $module ) {
                 if ( is_file( ( $file = $module->getData( 'dir' ) . DS . 'config' . DS . 'backend' . DS . 'menu.php' ) ) &&
                         is_array( ( $moduleMenuData = require $file ) ) ) {
-                    $menuData = array_merge( $menuData, $moduleMenuData );
+                    $menuData = array_merge_recursive( $menuData, $moduleMenuData );
                 }
             }
+            $this->processIdentifier( $menuData );
             usort( $menuData, function( $a, $b ) {
                 return $a['sort_order'] > $b['sort_order'] ? 1 : ( $a['sort_order'] < $b['sort_order'] ? -1 : 0 );
             } );
@@ -85,7 +100,7 @@ class Menu extends \CrazyCat\Index\Block\Menu {
 
         $menuData = [];
         $permissions = $this->session->getAdmin()->getRole()->getPermissions();
-        foreach ( $sourceData as $itemData ) {
+        foreach ( $sourceData as $identifier => $itemData ) {
 
             /**
              * Show level 1 item only on at least one child item is in permissions,
@@ -93,8 +108,8 @@ class Menu extends \CrazyCat\Index\Block\Menu {
              */
             if ( isset( $itemData['children'] ) ) {
                 $children = [];
-                foreach ( $itemData['children'] as $childData ) {
-                    if ( in_array( $childData['identifier'], $permissions ) ) {
+                foreach ( $itemData['children'] as $childIdentifier => $childData ) {
+                    if ( in_array( $childIdentifier, $permissions ) ) {
                         $children[] = $childData;
                     }
                 }
@@ -111,7 +126,7 @@ class Menu extends \CrazyCat\Index\Block\Menu {
              * Check permission with level 1 item if no child item set.
              */
             else {
-                if ( in_array( $itemData['identifier'], $permissions ) ) {
+                if ( in_array( $identifier, $permissions ) ) {
                     $menuData[] = $itemData;
                 }
             }

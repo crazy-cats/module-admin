@@ -12,12 +12,23 @@
  * @link http://crazy-cat.co
  */
 return [
-        [
-        'label' => __( 'Admin' ), 'identifier' => 'admin',
+    'admin' => [
+        'label' => __( 'Admin' ),
+        'sort_order' => 2,
         'children' => [
-                [ 'label' => __( 'Administrators' ), 'identifier' => 'admin/admin/index', 'url' => getUrl( 'admin/admin' ) ],
-                [ 'label' => __( 'Administrator Roles' ), 'identifier' => 'admin/admin_role/index', 'url' => getUrl( 'admin/admin_role' ) ]
-        ],
-        'sort_order' => 2 ],
-        [ 'label' => __( 'Logout' ), 'identifier' => 'admin/index/logout', 'sort_order' => 999, 'url' => getUrl( 'admin/index/logout' ) ]
+            'admin/admin/index' => [
+                'label' => __( 'Administrators' ),
+                'url' => getUrl( 'admin/admin' )
+            ],
+            'admin/admin_role/index' => [
+                'label' => __( 'Administrator Roles' ),
+                'url' => getUrl( 'admin/admin_role' )
+            ]
+        ]
+    ],
+    'admin/index/logout' => [
+        'label' => __( 'Logout' ),
+        'url' => getUrl( 'admin/index/logout' ),
+        'sort_order' => 999
+    ]
 ];
