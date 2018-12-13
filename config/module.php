@@ -15,10 +15,10 @@ return [
     'namespace' => 'CrazyCat\Admin',
     'version' => '1.0.0',
     'depends' => [],
-    'routes' => [
-        'backend' => 'admin'
-    ],
     'events' => [
         'backend_controller_execute_before' => 'CrazyCat\Admin\Observer\CheckAccessRight'
+    ],
+    'routes' => [
+        'backend' => 'admin'
     ]
 ];
