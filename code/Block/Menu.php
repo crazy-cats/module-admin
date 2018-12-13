@@ -62,7 +62,7 @@ class Menu extends \CrazyCat\Index\Block\Menu {
                 }
             }
             usort( $menuData, function( $a, $b ) {
-                return $a['sort_order'] < $b ? 1 : ( $a['sort_order'] > $b ? -1 : 0 );
+                return $a['sort_order'] > $b['sort_order'] ? 1 : ( $a['sort_order'] < $b['sort_order'] ? -1 : 0 );
             } );
             $cacheMenuData->setData( $menuData )->save();
         }
