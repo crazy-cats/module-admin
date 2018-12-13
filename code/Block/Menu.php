@@ -61,6 +61,9 @@ class Menu extends \CrazyCat\Index\Block\Menu {
                     $menuData = array_merge( $menuData, $moduleMenuData );
                 }
             }
+            usort( $menuData, function( $a, $b ) {
+                return $a['sort_order'] < $b ? 1 : ( $a['sort_order'] > $b ? -1 : 0 );
+            } );
             $cacheMenuData->setData( $menuData )->save();
         }
         return $menuData;

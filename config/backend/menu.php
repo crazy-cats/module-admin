@@ -17,6 +17,7 @@ return [
         'children' => [
                 [ 'label' => __( 'Administrators' ), 'identifier' => 'admin/admin/index', 'url' => getUrl( 'admin/admin' ) ],
                 [ 'label' => __( 'Administrator Roles' ), 'identifier' => 'admin/admin_role/index', 'url' => getUrl( 'admin/admin_role' ) ]
-        ] ],
-        [ 'label' => __( 'Logout' ), 'identifier' => 'admin/index/logout', 'url' => getUrl( 'admin/index/logout' ) ]
+        ],
+        'sort_order' => 2 ],
+        [ 'label' => __( 'Logout' ), 'identifier' => 'admin/index/logout', 'sort_order' => 999, 'url' => getUrl( 'admin/index/logout' ) ]
 ];
