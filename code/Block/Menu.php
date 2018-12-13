@@ -108,8 +108,8 @@ class Menu extends \CrazyCat\Index\Block\Menu {
              */
             if ( isset( $itemData['children'] ) ) {
                 $children = [];
-                foreach ( $itemData['children'] as $childIdentifier => $childData ) {
-                    if ( in_array( $childIdentifier, $permissions ) ) {
+                foreach ( $itemData['children'] as $childData ) {
+                    if ( in_array( $childData['identifier'], $permissions ) ) {
                         $children[] = $childData;
                     }
                 }
@@ -126,7 +126,7 @@ class Menu extends \CrazyCat\Index\Block\Menu {
              * Check permission with level 1 item if no child item set.
              */
             else {
-                if ( in_array( $identifier, $permissions ) ) {
+                if ( in_array( $itemData['identifier'], $permissions ) ) {
                     $menuData[] = $itemData;
                 }
             }
