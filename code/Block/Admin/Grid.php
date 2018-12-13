@@ -24,7 +24,7 @@ class Grid extends \CrazyCat\Framework\App\Module\Block\Backend\AbstractGrid {
     {
         return [
                 [ 'ids' => true, ],
-                [ 'name' => 'id', 'label' => __( 'ID' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'eq' ] ],
+                [ 'name' => 'id', 'label' => __( 'ID' ), 'sort' => true, 'width' => 100, 'filter' => [ 'type' => 'text', 'condition' => 'eq' ] ],
                 [ 'name' => 'name', 'label' => __( 'Name' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'like' ] ],
                 [ 'name' => 'username', 'label' => __( 'Username' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'like' ] ],
                 [ 'label' => __( 'Actions' ), 'actions' => [
