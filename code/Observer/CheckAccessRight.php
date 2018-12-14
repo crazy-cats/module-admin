@@ -41,18 +41,21 @@ class CheckAccessRight {
         $this->session = $session;
     }
 
-    public function execute( $data )
+    /**
+     * @param \CrazyCat\Framework\Data\Object $observer
+     */
+    public function execute( $observer )
     {
         $requestPath = $this->request->getFullPath( '/' );
         if ( $this->session->isLoggedIn() ) {
             if ( !$this->session->getAdmin()->getRole()->getData( 'is_super' ) &&
                     !in_array( $requestPath, array_merge( [ 'system/index/index' ], $this->session->getAdmin()->getRole()->getPermissions() ) ) ) {
                 $this->messenger->addError( __( 'You do not have the permission.' ) );
-                $data['action']->skipRunning()->redirect( 'admin' );
+                $observer->getAction()->skipRunning()->redirect( 'admin' );
             }
         }
         else if ( !in_array( $requestPath, [ 'system/index/login', 'system/index/loginpost', 'system/index/logout' ] ) ) {
-            $data['action']->skipRunning()->redirect( 'system/index/login' );
+            $observer->getAction()->skipRunning()->redirect( 'system/index/login' );
         }
     }
 
