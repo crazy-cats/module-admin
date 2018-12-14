@@ -14,11 +14,11 @@ use CrazyCat\Framework\App\Translator;
 
 /**
  * @category CrazyCat
- * @package CrazyCat\Index
+ * @package CrazyCat\Core
  * @author Bruce Z <152416319@qq.com>
  * @link http://crazy-cat.co
  */
-class Menu extends \CrazyCat\Index\Block\Menu {
+class Menu extends \CrazyCat\Core\Block\Menu {
 
     const CACHE_MENU_DATA = 'backend_menu_data';
 

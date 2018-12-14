@@ -15,11 +15,11 @@
     ],
     "require": {
         "crazycat/framework": "~1.0",
-        "crazycat/module-index": "~1.0"
+        "crazycat/module-core": "~1.0"
     },
     "require-dev": {
         "crazycat/framework": "dev-master",
-        "crazycat/module-index": "dev-master"
+        "crazycat/module-core": "dev-master"
     },
     "autoload": {
         "psr-4": {

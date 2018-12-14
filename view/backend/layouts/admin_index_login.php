@@ -15,7 +15,7 @@ return [
     'template' => 'home',
     'blocks' => [
         'main' => [
-            [ 'class' => 'CrazyCat\Index\Block\Template', 'data' => [ 'template' => 'CrazyCat\Admin::login' ] ]
+            'login' => [ 'class' => 'CrazyCat\Core\Block\Template', 'data' => [ 'template' => 'CrazyCat\Admin::login' ] ]
         ]
     ]
 ];
