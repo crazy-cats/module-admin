@@ -25,10 +25,5 @@ return [
                 'url' => getUrl( 'admin/admin_role' )
             ]
         ]
-    ],
-    'admin/index/logout' => [
-        'label' => __( 'Logout' ),
-        'url' => getUrl( 'admin/index/logout' ),
-        'sort_order' => 999
     ]
 ];
