@@ -10,6 +10,7 @@ namespace CrazyCat\Admin\Controller\Backend\Admin;
 use CrazyCat\Admin\Block\Admin\Grid as GridBlock;
 use CrazyCat\Admin\Model\Admin\Collection;
 use CrazyCat\Admin\Model\Admin\Role\Collection as RoleCollection;
+use CrazyCat\Core\Model\Source\YesNo as SourceYesNo;
 
 /**
  * @category CrazyCat
@@ -43,6 +44,19 @@ class Grid extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractGri
                         [ 'field' => 'role_id', 'conditions' => [ 'in' => $childRoleIds ] ] ] );
             }
         }
+    }
+
+    /**
+     * @param array $collectionData
+     * @return array
+     */
+    protected function processData( $collectionData )
+    {
+        $sourceYesNo = $this->objectManager->get( SourceYesNo::class );
+        foreach ( $collectionData['items'] as &$item ) {
+            $item['enabled'] = $sourceYesNo->getLabel( $item['enabled'] );
+        }
+        return $collectionData;
     }
 
 }
