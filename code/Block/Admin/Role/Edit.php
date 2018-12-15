@@ -10,7 +10,7 @@ namespace CrazyCat\Admin\Block\Admin\Role;
 use CrazyCat\Admin\Model\Session;
 use CrazyCat\Admin\Model\Source\AdminRoles;
 use CrazyCat\Admin\Model\Source\Permissions;
-use CrazyCat\Framework\App\Theme\Block\Context;
+use CrazyCat\Framework\App\Module\Block\Backend\Context;
 
 /**
  * @category CrazyCat
