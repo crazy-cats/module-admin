@@ -36,12 +36,17 @@ class Edit extends \CrazyCat\Core\Block\Backend\AbstractEdit {
     public function getFields()
     {
         return [
-                [ 'name' => 'id', 'label' => __( 'ID' ), 'type' => 'hidden' ],
-                [ 'name' => 'name', 'label' => __( 'Name' ), 'type' => 'text', 'validation' => [ 'required' => true ] ],
-                [ 'name' => 'username', 'label' => __( 'Username' ), 'type' => 'text', 'validation' => [ 'required' => true ] ],
-                [ 'name' => 'enabled', 'label' => __( 'Enabled' ), 'type' => 'select', 'options' => [ [ 'value' => '1', 'label' => __( 'Yes' ) ], [ 'value' => '0', 'label' => __( 'No' ) ] ] ],
-                [ 'name' => 'role_id', 'label' => __( 'Role' ), 'type' => 'select', 'options' => $this->adminRoles->toOptionArray() ],
-                [ 'name' => 'password', 'label' => __( 'Password' ), 'type' => 'password' ]
+            'general' => [
+                'label' => __( 'General' ),
+                'fields' => [
+                        [ 'name' => 'id', 'label' => __( 'ID' ), 'type' => 'hidden' ],
+                        [ 'name' => 'name', 'label' => __( 'Name' ), 'type' => 'text', 'validation' => [ 'required' => true ] ],
+                        [ 'name' => 'username', 'label' => __( 'Username' ), 'type' => 'text', 'validation' => [ 'required' => true ] ],
+                        [ 'name' => 'enabled', 'label' => __( 'Enabled' ), 'type' => 'select', 'options' => [ [ 'value' => '1', 'label' => __( 'Yes' ) ], [ 'value' => '0', 'label' => __( 'No' ) ] ] ],
+                        [ 'name' => 'role_id', 'label' => __( 'Role' ), 'type' => 'select', 'options' => $this->adminRoles->toOptionArray() ],
+                        [ 'name' => 'password', 'label' => __( 'Password' ), 'type' => 'password' ]
+                ]
+            ]
         ];
     }
 
