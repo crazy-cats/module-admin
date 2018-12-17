@@ -10,7 +10,7 @@ namespace CrazyCat\Admin\Block\Admin\Role;
 use CrazyCat\Admin\Model\Session;
 use CrazyCat\Admin\Model\Source\AdminRoles;
 use CrazyCat\Admin\Model\Source\Permissions;
-use CrazyCat\Framework\App\Module\Block\Backend\Context;
+use CrazyCat\Core\Block\Backend\Context;
 
 /**
  * @category CrazyCat
@@ -18,7 +18,7 @@ use CrazyCat\Framework\App\Module\Block\Backend\Context;
  * @author Bruce Z <152416319@qq.com>
  * @link http://crazy-cat.co
  */
-class Edit extends \CrazyCat\Framework\App\Module\Block\Backend\AbstractEdit {
+class Edit extends \CrazyCat\Core\Block\Backend\AbstractEdit {
 
     /**
      * @var \CrazyCat\Admin\Model\Source\AdminRoles

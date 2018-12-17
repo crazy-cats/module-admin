@@ -16,7 +16,7 @@ use CrazyCat\Admin\Model\Admin\Role\Collection;
  * @author Bruce Z <152416319@qq.com>
  * @link http://crazy-cat.co
  */
-class Grid extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractGridAction {
+class Grid extends \CrazyCat\Core\Controller\Backend\AbstractGridAction {
 
     protected function construct()
     {

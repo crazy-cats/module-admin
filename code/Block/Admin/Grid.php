@@ -9,7 +9,7 @@ namespace CrazyCat\Admin\Block\Admin;
 
 use CrazyCat\Core\Model\Source\YesNo as SourceYesNo;
 use CrazyCat\Framework\App\Session\Backend as Session;
-use CrazyCat\Framework\App\Theme\Block\Context;
+use CrazyCat\Core\Block\Backend\Context;
 
 /**
  * @category CrazyCat
@@ -17,7 +17,7 @@ use CrazyCat\Framework\App\Theme\Block\Context;
  * @author Bruce Z <152416319@qq.com>
  * @link http://crazy-cat.co
  */
-class Grid extends \CrazyCat\Framework\App\Module\Block\Backend\AbstractGrid {
+class Grid extends \CrazyCat\Core\Block\Backend\AbstractGrid {
 
     const BOOKMARK_KEY = 'admin';
 
