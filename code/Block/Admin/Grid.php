@@ -22,18 +22,6 @@ class Grid extends \CrazyCat\Core\Block\Backend\AbstractGrid {
     const BOOKMARK_KEY = 'admin';
 
     /**
-     * @var \CrazyCat\Core\Model\Source\YesNo
-     */
-    protected $sourceYesNo;
-
-    public function __construct( SourceYesNo $sourceYesNo, Session $session, Context $context, array $data = array() )
-    {
-        parent::__construct( $session, $context, $data );
-
-        $this->sourceYesNo = $sourceYesNo;
-    }
-
-    /**
      * @return array
      */
     public function getFields()
@@ -43,7 +31,7 @@ class Grid extends \CrazyCat\Core\Block\Backend\AbstractGrid {
                 [ 'name' => 'id', 'label' => __( 'ID' ), 'sort' => true, 'width' => 100, 'filter' => [ 'type' => 'text', 'condition' => 'eq' ] ],
                 [ 'name' => 'name', 'label' => __( 'Name' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'like' ] ],
                 [ 'name' => 'username', 'label' => __( 'Username' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'like' ] ],
-                [ 'name' => 'enabled', 'label' => __( 'Enabled' ), 'sort' => true, 'width' => 130, 'filter' => [ 'type' => 'select', 'condition' => 'eq', 'options' => $this->sourceYesNo->toOptionArray() ] ],
+                [ 'name' => 'enabled', 'label' => __( 'Enabled' ), 'sort' => true, 'width' => 130, 'filter' => [ 'type' => 'select', 'source' => SourceYesNo::class, 'condition' => 'eq' ] ],
                 [ 'label' => __( 'Actions' ), 'actions' => [
                         [ 'name' => 'edit', 'label' => __( 'Edit' ), 'url' => getUrl( 'admin/admin/edit' ) ],
                         [ 'name' => 'delete', 'label' => __( 'Delete' ), 'confirm' => __( 'Sure you want to remove this item?' ), 'url' => getUrl( 'admin/admin/delete' ) ]
