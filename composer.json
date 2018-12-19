@@ -1,6 +1,6 @@
 {
     "name": "crazycat/module-admin",
-    "description": "CrazyCat administrator module",
+    "description": "CrazyCat Module - Admin",
     "type": "crazycat-module",
     "license": [
         "proprietary"
