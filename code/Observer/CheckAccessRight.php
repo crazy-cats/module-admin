@@ -8,7 +8,6 @@
 namespace CrazyCat\Admin\Observer;
 
 use CrazyCat\Admin\Model\Session;
-use CrazyCat\Framework\App\Io\Http\Request;
 use CrazyCat\Framework\App\Session\Messenger;
 
 /**
@@ -25,19 +24,13 @@ class CheckAccessRight {
     private $messenger;
 
     /**
-     * @var \CrazyCat\Framework\App\Io\Http\Request
-     */
-    private $request;
-
-    /**
      * @var \CrazyCat\Admin\Model\Session
      */
     private $session;
 
-    public function __construct( Messenger $messenger, Request $request, Session $session )
+    public function __construct( Messenger $messenger, Session $session )
     {
         $this->messenger = $messenger;
-        $this->request = $request;
         $this->session = $session;
     }
 
@@ -46,7 +39,7 @@ class CheckAccessRight {
      */
     public function execute( $observer )
     {
-        $requestPath = $this->request->getFullPath( '/' );
+        $requestPath = $observer->getAction()->getRequest()->getFullPath( '/' );
         if ( $this->session->isLoggedIn() ) {
             if ( !$this->session->getAdmin()->getRole()->getData( 'is_super' ) &&
                     !in_array( $requestPath, array_merge( [ 'system/index/index' ], $this->session->getAdmin()->getRole()->getPermissions() ) ) ) {

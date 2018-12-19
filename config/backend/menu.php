@@ -23,6 +23,10 @@ return [
             'admin/admin_role/index' => [
                 'label' => __( 'Administrator Roles' ),
                 'url' => getUrl( 'admin/admin_role' )
+            ],
+            'admin/log/index' => [
+                'label' => __( 'Actions Log' ),
+                'url' => getUrl( 'admin/log' )
             ]
         ]
     ]

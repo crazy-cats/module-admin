@@ -8,8 +8,6 @@
 namespace CrazyCat\Admin\Block\Admin;
 
 use CrazyCat\Core\Model\Source\YesNo as SourceYesNo;
-use CrazyCat\Framework\App\Session\Backend as Session;
-use CrazyCat\Core\Block\Backend\Context;
 
 /**
  * @category CrazyCat
