@@ -23,7 +23,6 @@ class Grid extends \CrazyCat\Core\Block\Backend\AbstractGrid {
     public function getFields()
     {
         return [
-                [ 'ids' => true, ],
                 [ 'name' => 'admin_id', 'label' => __( 'Administrator' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'like' ] ],
                 [ 'name' => 'action', 'label' => __( 'Action' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'like' ] ],
                 [ 'name' => 'ip', 'label' => __( 'IP' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'like' ] ],
