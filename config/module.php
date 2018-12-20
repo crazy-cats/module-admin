@@ -18,7 +18,11 @@ return [
     'events' => [
         'process_backend_login' => 'CrazyCat\Admin\Observer\ProcessLogin',
         'process_backend_logout' => 'CrazyCat\Admin\Observer\ProcessLogout',
-        'backend_controller_execute_before' => [ 'CrazyCat\Admin\Observer\CheckAccessRight', 'CrazyCat\Admin\Observer\LogAction' ]
+        'backend_controller_execute_before' => [
+            'CrazyCat\Admin\Observer\CheckAccessRight',
+            'CrazyCat\Admin\Observer\LogAction',
+            'CrazyCat\Admin\Observer\PrepareForAction'
+        ]
     ],
     'routes' => [
         'backend' => 'admin'

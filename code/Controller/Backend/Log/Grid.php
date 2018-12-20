@@ -10,6 +10,7 @@ namespace CrazyCat\Admin\Controller\Backend\Log;
 use CrazyCat\Admin\Block\Log\Grid as GridBlock;
 use CrazyCat\Admin\Model\Log\Collection;
 use CrazyCat\Admin\Model\Admin\Collection as AdminCollection;
+use CrazyCat\Framework\App\Timezone;
 
 /**
  * @category CrazyCat
@@ -36,12 +37,16 @@ class Grid extends \CrazyCat\Core\Controller\Backend\AbstractGridAction {
         }
 
         /* @var $adminCollection \CrazyCat\Admin\Model\Admin\Collection */
-        $adminCollection = $this->objectManager->get( AdminCollection::class )
+        $adminCollection = $this->objectManager->create( AdminCollection::class )
                 ->addFieldToFilter( 'id', [ 'in' => array_unique( $adminIds ) ] );
+
+        /* @var $timezone \CrazyCat\Framework\App\Timezone */
+        $timezone = $this->objectManager->get( Timezone::class );
 
         foreach ( $collectionData['items'] as &$item ) {
             $adminModel = $adminCollection->getItemById( $item['admin_id'] );
             $item['admin_id'] = sprintf( '%s ( ID: %d )', $adminModel->getData( 'name' ), $adminModel->getId() );
+            $item['created_at'] = $timezone->getDateTime( $item['created_at'] );
         }
         return $collectionData;
     }
