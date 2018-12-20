@@ -7,6 +7,7 @@
 
 namespace CrazyCat\Admin\Controller\Backend\Admin;
 
+use CrazyCat\Admin\Helper\Permission;
 use CrazyCat\Admin\Model\Admin as Model;
 
 /**
@@ -26,6 +27,10 @@ class Edit extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAct
             $model->load( $id );
             if ( !$model->getId() ) {
                 $this->messenger->addError( __( 'Item with specified ID does not exist.' ) );
+                return $this->redirect( 'admin/admin' );
+            }
+            if ( !$this->objectManager->get( Permission::class )->canAccessAdmin( $model ) ) {
+                $this->messenger->addError( __( 'You do not have the permission.' ) );
                 return $this->redirect( 'admin/admin' );
             }
         }

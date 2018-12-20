@@ -7,6 +7,7 @@
 
 namespace CrazyCat\Admin\Controller\Backend\Admin;
 
+use CrazyCat\Admin\Helper\Permission;
 use CrazyCat\Admin\Model\Admin as Model;
 use CrazyCat\Framework\App\Url;
 
@@ -24,9 +25,22 @@ class Save extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAct
         $model = $this->objectManager->create( Model::class );
 
         $data = $this->request->getPost( 'data' );
-        if ( empty( $data[$model->getIdFieldName()] ) ) {
-            unset( $data[$model->getIdFieldName()] );
+
+        if ( empty( $data['id'] ) ) {
+            unset( $data['id'] );
         }
+        else {
+            $model->load( $data['id'] );
+            if ( !$model->getId() ) {
+                $this->messenger->addError( __( 'Item with specified ID does not exist.' ) );
+                return $this->redirect( 'admin/admin' );
+            }
+            if ( !$this->objectManager->get( Permission::class )->canAccessAdmin( $model ) ) {
+                $this->messenger->addError( __( 'You do not have the permission.' ) );
+                return $this->redirect( 'admin/admin' );
+            }
+        }
+
         if ( empty( $data['password'] ) ) {
             unset( $data['password'] );
         }

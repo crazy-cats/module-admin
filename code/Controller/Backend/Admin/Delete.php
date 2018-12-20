@@ -7,6 +7,7 @@
 
 namespace CrazyCat\Admin\Controller\Backend\Admin;
 
+use CrazyCat\Admin\Helper\Permission;
 use CrazyCat\Admin\Model\Admin as Model;
 use CrazyCat\Framework\App\Io\Http\Response;
 
@@ -29,6 +30,12 @@ class Delete extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractA
             /* @var $model \CrazyCat\Framework\App\Module\Model\AbstractModel */
             $model = $this->objectManager->create( Model::class )->load( $id );
             if ( $model->getId() ) {
+
+                if ( !$this->objectManager->get( Permission::class )->canAccessAdmin( $model ) ) {
+                    $this->messenger->addError( __( 'You do not have the permission.' ) );
+                    return $this->redirect( 'admin/admin' );
+                }
+
                 try {
                     $model->delete();
                     $success = true;

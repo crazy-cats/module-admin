@@ -7,6 +7,7 @@
 
 namespace CrazyCat\Admin\Controller\Backend\AdminRole;
 
+use CrazyCat\Admin\Helper\Permission;
 use CrazyCat\Admin\Model\Admin\Role as Model;
 use CrazyCat\Framework\App\Url;
 
@@ -24,8 +25,19 @@ class Save extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAct
         $model = $this->objectManager->create( Model::class );
 
         $data = $this->request->getPost( 'data' );
-        if ( empty( $data[$model->getIdFieldName()] ) ) {
-            unset( $data[$model->getIdFieldName()] );
+        if ( empty( $data['id'] ) ) {
+            unset( $data['id'] );
+        }
+        else {
+            $model->load( $data['id'] );
+            if ( !$model->getId() ) {
+                $this->messenger->addError( __( 'Item with specified ID does not exist.' ) );
+                return $this->redirect( 'admin/admin_role' );
+            }
+            if ( !$this->objectManager->get( Permission::class )->canAccessRole( $model ) ) {
+                $this->messenger->addError( __( 'You do not have the permission.' ) );
+                return $this->redirect( 'admin/admin_role' );
+            }
         }
 
         try {

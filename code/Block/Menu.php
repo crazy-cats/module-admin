@@ -18,7 +18,7 @@ use CrazyCat\Framework\App\Translator;
  * @author Bruce Z <152416319@qq.com>
  * @link http://crazy-cat.co
  */
-class Menu extends \CrazyCat\Core\Block\Menu {
+class Menu extends \CrazyCat\Framework\App\Module\Block\AbstractBlock {
 
     const CACHE_MENU_DATA = 'backend_menu_data';
 
@@ -100,7 +100,7 @@ class Menu extends \CrazyCat\Core\Block\Menu {
 
         $menuData = [];
         $permissions = $this->session->getAdmin()->getRole()->getPermissions();
-        foreach ( $sourceData as $identifier => $itemData ) {
+        foreach ( $sourceData as $itemData ) {
 
             /**
              * Show level 1 item only on at least one child item is in permissions,
@@ -133,6 +133,30 @@ class Menu extends \CrazyCat\Core\Block\Menu {
         }
 
         return $menuData;
+    }
+
+    /**
+     * @param array $menuData
+     * @param int $level
+     * @return string
+     */
+    public function getMenuHtml( $menuData = null, $level = 1 )
+    {
+        if ( $menuData === null ) {
+            $menuData = $this->getMenuData();
+        }
+
+        $html = '<ul class="level-' . $level . '">';
+        foreach ( $menuData as $menuItem ) {
+            $itemClass = 'level-' . $level . ' item-' . preg_replace( '/[^A-Za-z\d]+/', '-', $menuItem['identifier'] );
+            $linkClass = ( ( isset( $menuItem['url'] ) && $this->url->isCurrent( $menuItem['url'] ) ) ? 'class="current"' : '' );
+            $href = ( empty( $menuItem['url'] ) ? 'javascript:;' : $menuItem['url'] );
+            $childHtml = !empty( $menuItem['children'] ) ? $this->getMenuHtml( $menuItem['children'], $level + 1 ) : '';
+            $html .= sprintf( '<li class="%s"><a %s href="%s"><span>%s</span></a>%s</li>', $itemClass, $linkClass, $href, $menuItem['label'], $childHtml );
+        }
+        $html .= '</ul>';
+
+        return $html;
     }
 
 }

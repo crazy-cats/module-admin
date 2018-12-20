@@ -46,7 +46,10 @@ class LogAction {
         if ( $request->getParam( Request::AJAX_PARAM ) ) {
             return false;
         }
-        if ( in_array( $request->getActionName(), [ 'index', 'login', 'logout' ] ) ) {
+        if ( !$this->session->getAdmin() ) {
+            return false;
+        }
+        if ( in_array( $request->getActionName(), [ 'index' ] ) ) {
             return false;
         }
         return true;
