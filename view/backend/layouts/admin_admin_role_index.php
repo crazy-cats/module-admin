@@ -15,15 +15,20 @@ return [
     'template' => '2columns_left',
     'blocks' => [
         'header' => [
-                [ 'class' => 'CrazyCat\Core\Block\Template', 'data' => [
+            'header-buttons' => [
+                'class' => 'CrazyCat\Core\Block\Template',
+                'data' => [
                     'template' => 'CrazyCat\Core::header_buttons',
                     'buttons' => [
                         'new' => [ 'label' => __( 'Create New' ), 'action' => [ 'type' => 'redirect', 'params' => [ 'url' => getUrl( 'admin/admin_role/edit' ) ] ] ]
                     ]
-                ] ]
+                ]
+            ]
         ],
         'main' => [
-                [ 'class' => 'CrazyCat\Admin\Block\Admin\Role\Grid' ]
+            'grid-form' => [
+                'class' => 'CrazyCat\Admin\Block\Admin\Role\Grid'
+            ]
         ]
     ]
 ];
