@@ -14,7 +14,7 @@
 return [
     'admin' => [
         'label' => __( 'Admin' ),
-        'sort_order' => 2,
+        'sort_order' => 200,
         'children' => [
             'admin/admin/index' => [
                 'label' => __( 'Administrators' ),
