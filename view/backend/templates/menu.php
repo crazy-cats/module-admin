@@ -13,7 +13,10 @@
 <script type="text/javascript">
 // <![CDATA[
     require( [ 'CrazyCat/Admin/js/menu' ], function( menu ) {
-        menu( {el: '#main-menu'} );
+        menu( {
+            el: '#main-menu',
+            baseUrl: '<?php echo getBaseUrl(); ?>'
+        } );
     } );
 // ]]>
 </script>

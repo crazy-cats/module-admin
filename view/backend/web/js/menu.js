@@ -7,13 +7,33 @@ define( [ 'jquery', 'utility' ], function( $, utility ) {
     return function( options ) {
 
         var opts = $.extend( true, {
-            el: null
+            el: null,
+            baseUrl: null
         }, options );
 
         var menu = $( opts.el );
 
-        menu.find( 'a.current' ).parents( 'li' ).addClass( 'active' );
+        var getUrlPath = function( url ) {
+            if ( url.indexOf( opts.baseUrl ) === -1 ) {
+                return false;
+            }
+            var pathParts = url.substr( opts.baseUrl.length ).split( '/' );
+            var urlPath = '/';
+            if ( pathParts[1] && pathParts[2] ) {
+                urlPath += pathParts[1] + '/' + pathParts[2] + '/';
+            }
+            return urlPath;
+        };
 
+        var currentPath = getUrlPath( window.location.href );
+        menu.find( 'a' ).each( function() {
+            var el = $( this );
+            if ( getUrlPath( el.attr( 'href' ) ) === currentPath ) {
+                el.addClass( 'current' );
+            }
+        } );
+
+        menu.find( 'a.current' ).parents( 'li' ).addClass( 'active' );
         menu.find( 'li.parent' ).not( '.active' ).on( 'click', '> a', function() {
             $( this ).closest( 'li' ).find( '> ul' ).slideToggle();
         } );
