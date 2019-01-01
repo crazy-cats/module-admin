@@ -17,15 +17,15 @@ return [
         'sort_order' => 200,
         'children' => [
             'admin/admin/index' => [
-                'label' => __( 'Administrators' ),
+                'label' => 'Administrators',
                 'url' => getUrl( 'admin/admin' )
             ],
             'admin/admin_role/index' => [
-                'label' => __( 'Administrator Roles' ),
+                'label' => 'Administrator Roles',
                 'url' => getUrl( 'admin/admin_role' )
             ],
             'admin/log/index' => [
-                'label' => __( 'Actions Log' ),
+                'label' => 'Actions Log',
                 'url' => getUrl( 'admin/log' )
             ]
         ]

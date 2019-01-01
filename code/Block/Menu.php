@@ -152,7 +152,7 @@ class Menu extends \CrazyCat\Framework\App\Module\Block\AbstractBlock {
             $itemClass = 'level-' . $level . ' item-' . preg_replace( '/[^A-Za-z\d]+/', '-', $menuItem['identifier'] ) . ( $childHtml ? ' parent' : '' );
             $linkClass = ( ( isset( $menuItem['url'] ) && $this->url->isCurrent( $menuItem['url'] ) ) ? 'class="current"' : '' );
             $href = ( empty( $menuItem['url'] ) ? 'javascript:;' : $menuItem['url'] );
-            $html .= sprintf( '<li class="%s"><a %s href="%s"><span>%s</span></a>%s</li>', $itemClass, $linkClass, $href, $menuItem['label'], $childHtml );
+            $html .= sprintf( '<li class="%s"><a %s href="%s"><span>%s</span></a>%s</li>', $itemClass, $linkClass, $href, __( $menuItem['label'] ), $childHtml );
         }
         $html .= '</ul>';
 
