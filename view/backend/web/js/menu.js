@@ -38,8 +38,10 @@ define( [ 'jquery', 'utility' ], function( $, utility ) {
             $( this ).closest( 'li' ).find( '> ul' ).slideToggle();
         } );
 
-        menu.find( 'li' ).not( '.parent' ).on( 'click', '> a', function() {
-            utility.loading( true );
+        menu.find( 'li' ).not( '.parent' ).on( 'click', '> a', function( evt ) {
+            if ( !evt.shiftKey && !evt.ctrlKey ) {
+                utility.loading( true );
+            }
         } );
 
     };
