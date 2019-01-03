@@ -20,8 +20,7 @@ return [
         'process_backend_logout' => 'CrazyCat\Admin\Observer\ProcessLogout',
         'backend_controller_execute_before' => [
             'CrazyCat\Admin\Observer\CheckAccessRight',
-            'CrazyCat\Admin\Observer\LogAction',
-            'CrazyCat\Admin\Observer\PrepareForAction'
+            'CrazyCat\Admin\Observer\LogAction'
         ]
     ],
     'routes' => [
