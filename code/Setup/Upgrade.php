@@ -8,8 +8,8 @@
 namespace CrazyCat\Admin\Setup;
 
 use CrazyCat\Admin\Model\Admin as AdminModel;
-use CrazyCat\Framework\App\Db\Manager as DbManager;
 use CrazyCat\Framework\App\Db\MySql;
+use CrazyCat\Framework\App\ObjectManager;
 
 /**
  * @category CrazyCat
@@ -18,18 +18,6 @@ use CrazyCat\Framework\App\Db\MySql;
  * @link http://crazy-cat.co
  */
 class Upgrade extends \CrazyCat\Framework\App\Module\Setup\AbstractUpgrade {
-
-    /**
-     * @var \CrazyCat\Admin\Model\Admin
-     */
-    private $adminModel;
-
-    public function __construct( AdminModel $adminModel, DbManager $dbManager )
-    {
-        parent::__construct( $dbManager );
-
-        $this->adminModel = $adminModel;
-    }
 
     private function createAdminTable()
     {
@@ -100,7 +88,7 @@ class Upgrade extends \CrazyCat\Framework\App\Module\Setup\AbstractUpgrade {
 
         $this->conn->insert( 'admin', [
             'username' => 'admin',
-            'password' => $this->adminModel->encryptPassword( 'admin123' ),
+            'password' => ObjectManager::getInstance()->get( AdminModel::class )->encryptPassword( 'admin123' ),
             'name' => 'Admin',
             'enabled' => 1,
             'role_id' => $roleId,
