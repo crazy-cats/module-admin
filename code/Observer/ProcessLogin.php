@@ -36,7 +36,7 @@ class ProcessLogin {
     }
 
     /**
-     * @param \CrazyCat\Framework\Data\Object $observer
+     * @param \CrazyCat\Framework\Data\DataObject $observer
      * @return void
      */
     public function execute( $observer )

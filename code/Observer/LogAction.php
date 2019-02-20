@@ -56,7 +56,7 @@ class LogAction {
     }
 
     /**
-     * @param \CrazyCat\Framework\Data\Object $observer
+     * @param \CrazyCat\Framework\Data\DataObject $observer
      */
     public function execute( $observer )
     {
