@@ -47,7 +47,7 @@ class CheckAccessRight {
                 $observer->getAction()->skipRunning()->redirect( 'admin' );
             }
         }
-        else if ( !in_array( $requestPath, [ 'system/index/login', 'system/index/loginpost', 'system/index/logout', 'system/translate/source' ] ) ) {
+        else if ( !in_array( $requestPath, [ 'system/index/login', 'system/index/login_post', 'system/index/logout', 'system/translate/source' ] ) ) {
             $observer->getAction()->skipRunning()->redirect( 'system/index/login' );
         }
     }
