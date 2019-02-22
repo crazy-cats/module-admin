@@ -19,8 +19,8 @@ define( [ 'jquery', 'utility' ], function( $, utility ) {
             }
             var pathParts = url.substr( opts.baseUrl.length ).split( '/' );
             var urlPath = '/';
-            if ( pathParts[1] && pathParts[2] ) {
-                urlPath += pathParts[1] + '/' + pathParts[2] + '/';
+            if ( pathParts[1] && pathParts[2] && pathParts[3] ) {
+                urlPath += pathParts[1] + '/' + pathParts[2] + '/' + pathParts[3] + '/';
             }
             return urlPath;
         };
