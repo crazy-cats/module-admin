@@ -13,20 +13,20 @@
  */
 return [
     'admin' => [
-        'label' => __( 'Admin' ),
+        'label' => 'Admin',
         'sort_order' => 200,
         'children' => [
             'admin/admin/index' => [
                 'label' => 'Administrators',
-                'url' => getUrl( 'admin/admin' )
+                'url' => 'admin/admin'
             ],
             'admin/admin_role/index' => [
                 'label' => 'Administrator Roles',
-                'url' => getUrl( 'admin/admin_role' )
+                'url' => 'admin/admin_role'
             ],
             'admin/log/index' => [
                 'label' => 'Actions Log',
-                'url' => getUrl( 'admin/log' )
+                'url' => 'admin/log'
             ]
         ]
     ]
