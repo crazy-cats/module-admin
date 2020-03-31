@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright © 2018 CrazyCat, Inc. All rights reserved.
+ * Copyright © 2020 CrazyCat, Inc. All rights reserved.
  * See COPYRIGHT.txt for license details.
  */
 
@@ -9,17 +9,17 @@ namespace CrazyCat\Admin\Controller\Backend\AdminRole;
 
 use CrazyCat\Admin\Helper\Permission;
 use CrazyCat\Admin\Model\Admin\Role as Model;
-use CrazyCat\Framework\App\Url;
+use CrazyCat\Framework\App\Io\Http\Url;
 
 /**
  * @category CrazyCat
- * @package CrazyCat\Admin
- * @author Bruce Z <152416319@qq.com>
- * @link http://crazy-cat.co
+ * @package  CrazyCat\Admin
+ * @author   Liwei Zeng <zengliwei@163.com>
+ * @link     https://crazy-cat.cn
  */
-class Save extends \CrazyCat\Framework\App\Module\Controller\Backend\AbstractAction {
+class Save extends \CrazyCat\Framework\App\Component\Module\Controller\Backend\AbstractAction {
 
-    protected function run()
+    protected function execute()
     {
         /* @var $model \CrazyCat\Admin\Model\Admin\Role */
         $model = $this->objectManager->create( Model::class );

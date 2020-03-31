@@ -5,7 +5,7 @@
  * See COPYRIGHT.txt for license details.
  */
 
-namespace CrazyCat\Admin\Model\Log;
+namespace CrazyCat\Admin\Controller\Backend\Index;
 
 /**
  * @category CrazyCat
@@ -13,11 +13,10 @@ namespace CrazyCat\Admin\Model\Log;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Collection extends \CrazyCat\Framework\App\Component\Module\Model\AbstractCollection {
-
-    protected function construct()
+class Index extends \CrazyCat\Framework\App\Component\Module\Controller\Backend\AbstractAction
+{
+    protected function execute()
     {
-        $this->init( 'CrazyCat\Admin\Model\Log' );
+        $this->setPageTitle(__('Administrator'))->render();
     }
-
 }

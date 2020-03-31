@@ -7,15 +7,14 @@
     ],
     "authors": [
         {
-            "name": "Bruce Z",
+            "name": "Liwei Zeng",
             "email": "zengliwei@163.com",
-            "homepage": "http://crazy-cat.co",
+            "homepage": "https://crazy-cat.cn",
             "role": "Developer"
         }
     ],
     "require": {
-        "crazycat/framework": "~1.0",
-        "crazycat/module-core": "~1.0"
+        "crazycat/framework": "~1.0"
     },
     "require-dev": {
         "crazycat/framework": "dev-master",

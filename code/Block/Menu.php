@@ -1,31 +1,31 @@
 <?php
 
 /*
- * Copyright © 2018 CrazyCat, Inc. All rights reserved.
+ * Copyright © 2020 CrazyCat, Inc. All rights reserved.
  * See COPYRIGHT.txt for license details.
  */
 
 namespace CrazyCat\Admin\Block;
 
 use CrazyCat\Admin\Model\Session;
-use CrazyCat\Framework\App\Module\Manager as ModuleManager;
+use CrazyCat\Framework\App\Component\Module\Manager as ModuleManager;
 use CrazyCat\Framework\App\Theme\Block\Context;
 use CrazyCat\Framework\App\Translator;
 
 /**
  * @category CrazyCat
  * @package CrazyCat\Core
- * @author Bruce Z <152416319@qq.com>
- * @link http://crazy-cat.co
+ * @author   Liwei Zeng <zengliwei@163.com>
+ * @link     https://crazy-cat.cn
  */
-class Menu extends \CrazyCat\Framework\App\Module\Block\AbstractBlock {
+class Menu extends \CrazyCat\Framework\App\Component\Module\Block\AbstractBlock {
 
     const CACHE_MENU_DATA = 'backend_menu_data';
 
     protected $template = 'CrazyCat\Admin::menu';
 
     /**
-     * @var \CrazyCat\Framework\App\Module\Manager
+     * @var \CrazyCat\Framework\App\Component\Module\Manager
      */
     protected $moduleManager;
 

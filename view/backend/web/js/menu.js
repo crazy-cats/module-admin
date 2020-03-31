@@ -1,5 +1,5 @@
 /* 
- * Copyright © 2018 CrazyCat, Inc. All rights reserved.
+ * Copyright © 2020 CrazyCat, Inc. All rights reserved.
  * See COPYRIGHT.txt for license details.
  */
 define( [ 'jquery', 'utility' ], function( $, utility ) {
