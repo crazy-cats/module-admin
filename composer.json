@@ -5,6 +5,9 @@
     "license": [
         "proprietary"
     ],
+    "keywords": [
+        "PSR-12"
+    ],
     "authors": [
         {
             "name": "Liwei Zeng",
@@ -16,10 +19,6 @@
     "require": {
         "crazycat/framework": "~1.0"
     },
-    "require-dev": {
-        "crazycat/framework": "dev-master",
-        "crazycat/module-core": "dev-master"
-    },
     "autoload": {
         "psr-4": {
             "CrazyCat\\Admin\\": "code/"
@@ -27,10 +26,5 @@
         "files": [
             "registration.php"
         ]
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.x-dev"
-        }
     }
 }
