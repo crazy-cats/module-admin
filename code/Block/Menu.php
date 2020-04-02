@@ -14,7 +14,7 @@ use CrazyCat\Framework\App\Translator;
 
 /**
  * @category CrazyCat
- * @package CrazyCat\Base
+ * @package  CrazyCat\Admin
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
