@@ -16,9 +16,9 @@ return [
     'blocks' => [
         'header' => [
             'header-buttons' => [
-                'class' => 'CrazyCat\Core\Block\Template',
+                'class' => 'CrazyCat\Base\Block\Template',
                 'data' => [
-                    'template' => 'CrazyCat\Core::header_buttons',
+                    'template' => 'CrazyCat\Base::header_buttons',
                     'buttons' => [
                         'back' => [ 'label' => __( 'Back' ), 'action' => [ 'type' => 'redirect', 'params' => [ 'url' => getUrl( 'admin/admin_role' ) ] ] ],
                         'save' => [ 'label' => __( 'Save' ), 'action' => [ 'type' => 'save', 'params' => [ 'target' => '#edit-form' ] ] ],

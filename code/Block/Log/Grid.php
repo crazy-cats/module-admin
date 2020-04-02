@@ -13,7 +13,7 @@ namespace CrazyCat\Admin\Block\Log;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Grid extends \CrazyCat\Core\Block\Backend\AbstractGrid {
+class Grid extends \CrazyCat\Base\Block\Backend\AbstractGrid {
 
     const BOOKMARK_KEY = 'admin_log';
 

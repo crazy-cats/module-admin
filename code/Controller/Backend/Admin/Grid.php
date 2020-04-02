@@ -10,7 +10,7 @@ namespace CrazyCat\Admin\Controller\Backend\Admin;
 use CrazyCat\Admin\Block\Admin\Grid as GridBlock;
 use CrazyCat\Admin\Model\Admin\Collection;
 use CrazyCat\Admin\Model\Admin\Role\Collection as RoleCollection;
-use CrazyCat\Core\Model\Source\YesNo as SourceYesNo;
+use CrazyCat\Base\Model\Source\YesNo as SourceYesNo;
 
 /**
  * @category CrazyCat
@@ -18,7 +18,7 @@ use CrazyCat\Core\Model\Source\YesNo as SourceYesNo;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Grid extends \CrazyCat\Core\Controller\Backend\AbstractGridAction
+class Grid extends \CrazyCat\Base\Controller\Backend\AbstractGridAction
 {
     protected function construct()
     {

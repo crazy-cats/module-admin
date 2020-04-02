@@ -18,7 +18,7 @@ use CrazyCat\Framework\App\Timezone;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Grid extends \CrazyCat\Core\Controller\Backend\AbstractGridAction {
+class Grid extends \CrazyCat\Base\Controller\Backend\AbstractGridAction {
 
     protected function construct()
     {

@@ -7,7 +7,7 @@
 
 namespace CrazyCat\Admin\Block\Admin;
 
-use CrazyCat\Core\Model\Source\YesNo as SourceYesNo;
+use CrazyCat\Base\Model\Source\YesNo as SourceYesNo;
 
 /**
  * @category CrazyCat
@@ -15,7 +15,7 @@ use CrazyCat\Core\Model\Source\YesNo as SourceYesNo;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Grid extends \CrazyCat\Core\Block\Backend\AbstractGrid {
+class Grid extends \CrazyCat\Base\Block\Backend\AbstractGrid {
 
     const BOOKMARK_KEY = 'admin';
 
