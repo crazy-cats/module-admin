@@ -7,16 +7,16 @@
 /* @var $this \CrazyCat\Admin\Block\Menu */
 ?>
 <div class="main-menu" id="main-menu">
-    <?php echo $this->getMenuHtml(); ?>
+    <?= $this->getMenuHtml(); ?>
 </div>
 
 <script type="text/javascript">
-// <![CDATA[
-    require( [ 'CrazyCat/Admin/js/menu' ], function( menu ) {
-        menu( {
+    // <![CDATA[
+    require(['CrazyCat/Admin/js/menu'], function (menu) {
+        menu({
             el: '#main-menu',
-            baseUrl: '<?php echo getBaseUrl(); ?>'
-        } );
-    } );
-// ]]>
+            baseUrl: '<?= $this->getBaseUrl(); ?>'
+        });
+    });
+    // ]]>
 </script>

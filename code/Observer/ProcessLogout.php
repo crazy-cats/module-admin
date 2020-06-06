@@ -8,7 +8,7 @@
 namespace CrazyCat\Admin\Observer;
 
 use CrazyCat\Admin\Model\Session;
-use CrazyCat\Framework\App\Cookies;
+use CrazyCat\Framework\App\Io\Http\Cookies;
 use CrazyCat\Framework\App\Io\Http\Session\Manager as SessionManager;
 
 /**
@@ -20,7 +20,7 @@ use CrazyCat\Framework\App\Io\Http\Session\Manager as SessionManager;
 class ProcessLogout {
 
     /**
-     * @var \CrazyCat\Framework\App\Cookies
+     * @var \CrazyCat\Framework\App\Io\Http\Cookies
      */
     private $cookies;
 

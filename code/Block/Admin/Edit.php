@@ -16,16 +16,16 @@ use CrazyCat\Base\Block\Backend\Context;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Edit extends \CrazyCat\Base\Block\Backend\AbstractEdit {
-
+class Edit extends \CrazyCat\Base\Block\Backend\AbstractEdit
+{
     /**
      * @var \CrazyCat\Admin\Model\Source\AdminRoles
      */
     protected $adminRoles;
 
-    public function __construct( AdminRoles $adminRoles, Context $context, array $data = [] )
+    public function __construct(AdminRoles $adminRoles, Context $context, array $data = [])
     {
-        parent::__construct( $context, $data );
+        parent::__construct($context, $data);
 
         $this->adminRoles = $adminRoles;
     }
@@ -37,14 +37,26 @@ class Edit extends \CrazyCat\Base\Block\Backend\AbstractEdit {
     {
         return [
             'general' => [
-                'label' => __( 'General' ),
+                'label'  => __('General'),
                 'fields' => [
-                        [ 'name' => 'id', 'label' => __( 'ID' ), 'type' => 'hidden' ],
-                        [ 'name' => 'name', 'label' => __( 'Name' ), 'type' => 'text', 'validation' => [ 'required' => true ] ],
-                        [ 'name' => 'username', 'label' => __( 'Username' ), 'type' => 'text', 'validation' => [ 'required' => true ] ],
-                        [ 'name' => 'enabled', 'label' => __( 'Enabled' ), 'type' => 'select', 'options' => [ [ 'value' => '1', 'label' => __( 'Yes' ) ], [ 'value' => '0', 'label' => __( 'No' ) ] ] ],
-                        [ 'name' => 'role_id', 'label' => __( 'Role' ), 'type' => 'select', 'options' => $this->adminRoles->toOptionArray() ],
-                        [ 'name' => 'password', 'label' => __( 'Password' ), 'type' => 'password' ]
+                    ['name' => 'id', 'label' => __('ID'), 'type' => 'hidden'],
+                    ['name' => 'name', 'label' => __('Name'), 'type' => 'text', 'validation' => ['required' => true]],
+                    ['name'       => 'username',
+                     'label'      => __('Username'),
+                     'type'       => 'text',
+                     'validation' => ['required' => true]
+                    ],
+                    ['name'    => 'enabled',
+                     'label'   => __('Enabled'),
+                     'type'    => 'select',
+                     'options' => [['value' => '1', 'label' => __('Yes')], ['value' => '0', 'label' => __('No')]]
+                    ],
+                    ['name'    => 'role_id',
+                     'label'   => __('Role'),
+                     'type'    => 'select',
+                     'options' => $this->adminRoles->toOptionArray()
+                    ],
+                    ['name' => 'password', 'label' => __('Password'), 'type' => 'password']
                 ]
             ]
         ];
@@ -55,7 +67,6 @@ class Edit extends \CrazyCat\Base\Block\Backend\AbstractEdit {
      */
     public function getActionUrl()
     {
-        return getUrl( 'admin/admin/save' );
+        return $this->getUrl('admin/admin/save');
     }
-
 }

@@ -20,7 +20,7 @@ return [
                 'data' => [
                     'template' => 'CrazyCat\Base::header_buttons',
                     'buttons' => [
-                        'new' => [ 'label' => __( 'Create New' ), 'action' => [ 'type' => 'redirect', 'params' => [ 'url' => getUrl( 'admin/admin_role/edit' ) ] ] ]
+                        'new' => [ 'label' => __( 'Create New' ), 'action' => [ 'type' => 'redirect', 'params' => [ 'url' => $this->getUrl( 'admin/admin_role/edit' ) ] ] ]
                     ]
                 ]
             ]

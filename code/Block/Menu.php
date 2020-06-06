@@ -9,8 +9,8 @@ namespace CrazyCat\Admin\Block;
 
 use CrazyCat\Admin\Model\Session;
 use CrazyCat\Framework\App\Component\Module\Manager as ModuleManager;
-use CrazyCat\Framework\App\Theme\Block\Context;
-use CrazyCat\Framework\App\Translator;
+use CrazyCat\Framework\App\Component\Theme\Block\Context;
+use CrazyCat\Framework\App\Component\Language\Translator;
 
 /**
  * @category CrazyCat
@@ -35,7 +35,7 @@ class Menu extends \CrazyCat\Framework\App\Component\Module\Block\AbstractBlock 
     protected $session;
 
     /**
-     * @var \CrazyCat\Framework\App\Translator
+     * @var \CrazyCat\Framework\App\Component\Language\Translator
      */
     protected $translator;
 

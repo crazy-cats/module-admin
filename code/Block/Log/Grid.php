@@ -34,7 +34,7 @@ class Grid extends \CrazyCat\Base\Block\Backend\AbstractGrid {
      */
     public function getSourceUrl()
     {
-        return getUrl( 'admin/log/grid' );
+        return $this->getUrl( 'admin/log/grid' );
     }
 
 }

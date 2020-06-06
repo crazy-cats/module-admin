@@ -20,8 +20,8 @@ return [
                 'data' => [
                     'template' => 'CrazyCat\Base::header_buttons',
                     'buttons' => [
-                        'delete' => [ 'label' => __( 'Mass Delete' ), 'action' => [ 'type' => 'massDelete', 'confirm' => __( 'Sure you want to remove selected item(s)?' ), 'params' => [ 'target' => '#grid-form', 'action' => getUrl( 'admin/admin/massdelete' ) ] ] ],
-                        'new' => [ 'label' => __( 'Create New' ), 'action' => [ 'type' => 'redirect', 'params' => [ 'url' => getUrl( 'admin/admin/edit' ) ] ] ]
+                        'delete' => [ 'label' => __( 'Mass Delete' ), 'action' => [ 'type' => 'massDelete', 'confirm' => __( 'Sure you want to remove selected item(s)?' ), 'params' => [ 'target' => '#grid-form', 'action' => $this->getUrl( 'admin/admin/massdelete' ) ] ] ],
+                        'new' => [ 'label' => __( 'Create New' ), 'action' => [ 'type' => 'redirect', 'params' => [ 'url' => $this->getUrl( 'admin/admin/edit' ) ] ] ]
                     ]
                 ]
             ]

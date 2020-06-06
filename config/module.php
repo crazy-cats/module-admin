@@ -13,9 +13,13 @@
  */
 return [
     'namespace' => 'CrazyCat\Admin',
-    'version' => '1.0.0',
-    'depends' => [],
-    'routes' => [
+    'depends'   => [
+        'CrazyCat\Base'
+    ],
+    'routes'    => [
         'backend' => 'admin'
+    ],
+    'setup'     => [
+        'CrazyCat\Admin\Setup\Install'
     ]
 ];

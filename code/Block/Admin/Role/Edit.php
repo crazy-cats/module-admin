@@ -75,7 +75,7 @@ class Edit extends \CrazyCat\Base\Block\Backend\AbstractEdit {
      */
     public function getActionUrl()
     {
-        return getUrl( 'admin/admin_role/save' );
+        return $this->getUrl( 'admin/admin_role/save' );
     }
 
 }
