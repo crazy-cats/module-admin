@@ -13,7 +13,7 @@
  */
 return [
     'template' => '2columns_left',
-    'blocks' => [
+    'blocks'   => [
         'main' => [
             'grid-form' => [
                 'class' => 'CrazyCat\Admin\Block\Log\Grid'

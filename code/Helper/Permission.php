@@ -8,8 +8,6 @@
 namespace CrazyCat\Admin\Helper;
 
 use CrazyCat\Admin\Model\Admin;
-use CrazyCat\Admin\Model\Session;
-use CrazyCat\Framework\App\ObjectManager;
 
 /**
  * @category CrazyCat
@@ -17,8 +15,8 @@ use CrazyCat\Framework\App\ObjectManager;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Permission {
-
+class Permission
+{
     /**
      * @var \CrazyCat\Framework\App\ObjectManager
      */
@@ -29,8 +27,10 @@ class Permission {
      */
     protected $session;
 
-    public function __construct( ObjectManager $objectManager, Session $session )
-    {
+    public function __construct(
+        \CrazyCat\Framework\App\ObjectManager $objectManager,
+        \CrazyCat\Admin\Model\Session $session
+    ) {
         $this->objectManager = $objectManager;
         $this->session = $session;
     }
@@ -38,46 +38,47 @@ class Permission {
     /**
      * Super administrators can access all,
      *     other administrators can access themseives and down level administrators.
-     * 
+     *
      * @param \CrazyCat\Admin\Model\Admin|int $targetAdmin
-     * @return boolean
+     * @return bool
+     * @throws \ReflectionException
      */
-    public function canAccessAdmin( $targetAdmin )
+    public function canAccessAdmin($targetAdmin)
     {
         /* @var $admin \CrazyCat\Admin\Model\Admin */
         $admin = $this->session->getAdmin();
-        if ( $admin->getRole()->getIsSuper() ) {
+        if ($admin->getRole()->getIsSuper()) {
             return true;
         }
 
         /* @var $targetAdmin \CrazyCat\Admin\Model\Admin */
-        if ( is_numeric( $targetAdmin ) ) {
-            $targetAdmin = $this->objectManager->create( Admin::class )->load( $targetAdmin );
+        if (is_numeric($targetAdmin)) {
+            $targetAdmin = $this->objectManager->create(Admin::class)->load($targetAdmin);
         }
         return $targetAdmin->getId() == $admin->getId() ||
-                strpos( $targetAdmin->getRole()->getPath(), ( $admin->getRole()->getPath() . '/' ) ) === 0;
+            strpos($targetAdmin->getRole()->getPath(), ($admin->getRole()->getPath() . '/')) === 0;
     }
 
     /**
      * Super administrators can access all,
      *     other administrators can access down level roles.
-     * 
+     *
      * @param \CrazyCat\Admin\Model\Admin\Role|int $targetRole
-     * @return boolean
+     * @return bool
+     * @throws \ReflectionException
      */
-    public function canAccessRole( $targetRole )
+    public function canAccessRole($targetRole)
     {
         /* @var $admin \CrazyCat\Admin\Model\Admin */
         $admin = $this->session->getAdmin();
-        if ( $admin->getRole()->getIsSuper() ) {
+        if ($admin->getRole()->getIsSuper()) {
             return true;
         }
 
         /* @var $targetRole \CrazyCat\Admin\Model\Admin\Role */
-        if ( is_numeric( $targetRole ) ) {
-            $targetRole = $this->objectManager->create( Admin\Role::class )->load( $targetRole );
+        if (is_numeric($targetRole)) {
+            $targetRole = $this->objectManager->create(Admin\Role::class)->load($targetRole);
         }
-        return strpos( $targetRole->getPath(), ( $admin->getRole()->getPath() . '/' ) ) === 0;
+        return strpos($targetRole->getPath(), ($admin->getRole()->getPath() . '/')) === 0;
     }
-
 }

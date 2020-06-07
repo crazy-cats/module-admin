@@ -13,11 +13,10 @@ namespace CrazyCat\Admin\Controller\Backend\Log;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Index extends \CrazyCat\Framework\App\Component\Module\Controller\Backend\AbstractAction {
-
+class Index extends \CrazyCat\Framework\App\Component\Module\Controller\Backend\AbstractAction
+{
     protected function execute()
     {
-        $this->setPageTitle( __( 'Actions Log' ) )->render();
+        $this->setPageTitle(__('Actions Log'))->render();
     }
-
 }

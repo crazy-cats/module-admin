@@ -7,8 +7,6 @@
 
 namespace CrazyCat\Admin\Observer;
 
-use CrazyCat\Admin\Model\Session;
-use CrazyCat\Framework\App\Io\Http\Cookies;
 use CrazyCat\Framework\App\Io\Http\Session\Manager as SessionManager;
 
 /**
@@ -17,8 +15,8 @@ use CrazyCat\Framework\App\Io\Http\Session\Manager as SessionManager;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class ProcessLogout {
-
+class ProcessLogout
+{
     /**
      * @var \CrazyCat\Framework\App\Io\Http\Cookies
      */
@@ -29,8 +27,10 @@ class ProcessLogout {
      */
     private $session;
 
-    public function __construct( Cookies $cookies, Session $session )
-    {
+    public function __construct(
+        \CrazyCat\Framework\App\Io\Http\Cookies $cookies,
+        \CrazyCat\Admin\Model\Session $session
+    ) {
         $this->cookies = $cookies;
         $this->session = $session;
     }
@@ -40,10 +40,9 @@ class ProcessLogout {
      */
     public function execute()
     {
-        if ( $this->session->isLoggedIn() ) {
+        if ($this->session->isLoggedIn()) {
             $this->session->destroy();
-            $this->cookies->unsetData( SessionManager::SESSION_NAME );
+            $this->cookies->unsetData(SessionManager::SESSION_NAME);
         }
     }
-
 }

@@ -13,20 +13,36 @@
  */
 return [
     'template' => '2columns_left',
-    'blocks' => [
+    'blocks'   => [
         'header' => [
             'header-buttons' => [
                 'class' => 'CrazyCat\Base\Block\Template',
-                'data' => [
+                'data'  => [
                     'template' => 'CrazyCat\Base::header_buttons',
-                    'buttons' => [
-                        'delete' => [ 'label' => __( 'Mass Delete' ), 'action' => [ 'type' => 'massDelete', 'confirm' => __( 'Sure you want to remove selected item(s)?' ), 'params' => [ 'target' => '#grid-form', 'action' => $this->getUrl( 'admin/admin/massdelete' ) ] ] ],
-                        'new' => [ 'label' => __( 'Create New' ), 'action' => [ 'type' => 'redirect', 'params' => [ 'url' => $this->getUrl( 'admin/admin/edit' ) ] ] ]
+                    'buttons'  => [
+                        'delete' => [
+                            'label'  => __('Mass Delete'),
+                            'action' => [
+                                'type'    => 'massDelete',
+                                'confirm' => __('Sure you want to remove selected item(s)?'),
+                                'params'  => [
+                                    'target' => '#grid-form',
+                                    'action' => $this->getUrl('admin/admin/massdelete')
+                                ]
+                            ]
+                        ],
+                        'new'    => [
+                            'label'  => __('Create New'),
+                            'action' => [
+                                'type'   => 'redirect',
+                                'params' => ['url' => $this->getUrl('admin/admin/edit')]
+                            ]
+                        ]
                     ]
                 ]
             ]
         ],
-        'main' => [
+        'main'   => [
             'grid-form' => [
                 'class' => 'CrazyCat\Admin\Block\Admin\Grid'
             ]

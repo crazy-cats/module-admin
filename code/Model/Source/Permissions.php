@@ -7,9 +7,7 @@
 
 namespace CrazyCat\Admin\Model\Source;
 
-use CrazyCat\Admin\Model\Session;
 use CrazyCat\Framework\App\Area;
-use CrazyCat\Framework\App\Component\Module\Manager as ModuleManager;
 
 /**
  * @category CrazyCat
@@ -17,8 +15,8 @@ use CrazyCat\Framework\App\Component\Module\Manager as ModuleManager;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Permissions {
-
+class Permissions
+{
     /**
      * @var \CrazyCat\Framework\App\Component\Module\Manager
      */
@@ -34,41 +32,43 @@ class Permissions {
      */
     private $session;
 
-    public function __construct( Session $session, ModuleManager $moduleManager )
-    {
+    public function __construct(
+        \CrazyCat\Admin\Model\Session $session,
+        \CrazyCat\Framework\App\Component\Module\Manager $moduleManager
+    ) {
         $this->moduleManager = $moduleManager;
         $this->session = $session;
     }
 
     /**
      * @return array
+     * @throws \ReflectionException
      */
     public function toOptionArray()
     {
-        if ( $this->options === null ) {
+        if ($this->options === null) {
             $actions = [];
-            foreach ( $this->moduleManager->getEnabledModules() as $module ) {
-                $actions = array_merge( $actions, array_keys( $module->getControllerActions( Area::CODE_BACKEND ) ) );
+            foreach ($this->moduleManager->getEnabledModules() as $module) {
+                $actions = array_merge($actions, array_keys($module->getControllerActions(Area::CODE_BACKEND)));
             }
 
             /**
              * Non-super administrator is only able to see permissions of itself.
              */
-            if ( $this->session->getAdmin() ) {
+            if ($this->session->getAdmin()) {
                 $adminRole = $this->session->getAdmin()->getRole();
-                if ( !$adminRole->getIsSuper() ) {
-                    $actions = array_intersect( $actions, $adminRole->getPermissions() );
+                if (!$adminRole->getIsSuper()) {
+                    $actions = array_intersect($actions, $adminRole->getPermissions());
                 }
             }
 
             $this->options = [];
-            sort( $actions );
-            foreach ( $actions as $action ) {
-                $this->options[] = [ 'label' => $action, 'value' => $action ];
+            sort($actions);
+            foreach ($actions as $action) {
+                $this->options[] = ['label' => $action, 'value' => $action];
             }
         }
 
         return $this->options;
     }
-
 }

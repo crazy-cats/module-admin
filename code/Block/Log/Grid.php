@@ -13,20 +13,42 @@ namespace CrazyCat\Admin\Block\Log;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Grid extends \CrazyCat\Base\Block\Backend\AbstractGrid {
-
+class Grid extends \CrazyCat\Base\Block\Backend\AbstractGrid
+{
     const BOOKMARK_KEY = 'admin_log';
 
     /**
      * @return array
+     * @throws \ReflectionException
      */
     public function getFields()
     {
         return [
-                [ 'name' => 'admin_id', 'label' => __( 'Administrator' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'like' ] ],
-                [ 'name' => 'action', 'label' => __( 'Action' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'like' ] ],
-                [ 'name' => 'ip', 'label' => __( 'IP' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'like' ] ],
-                [ 'name' => 'created_at', 'label' => __( 'Time' ), 'sort' => true, 'filter' => [ 'type' => 'text', 'condition' => 'like' ] ] ];
+            [
+                'name'   => 'admin_id',
+                'label'  => __('Administrator'),
+                'sort'   => true,
+                'filter' => ['type' => 'text', 'condition' => 'like']
+            ],
+            [
+                'name'   => 'action',
+                'label'  => __('Action'),
+                'sort'   => true,
+                'filter' => ['type' => 'text', 'condition' => 'like']
+            ],
+            [
+                'name'   => 'ip',
+                'label'  => __('IP'),
+                'sort'   => true,
+                'filter' => ['type' => 'text', 'condition' => 'like']
+            ],
+            [
+                'name'   => 'created_at',
+                'label'  => __('Time'),
+                'sort'   => true,
+                'filter' => ['type' => 'text', 'condition' => 'like']
+            ]
+        ];
     }
 
     /**
@@ -34,7 +56,6 @@ class Grid extends \CrazyCat\Base\Block\Backend\AbstractGrid {
      */
     public function getSourceUrl()
     {
-        return $this->getUrl( 'admin/log/grid' );
+        return $this->getUrl('admin/log/grid');
     }
-
 }

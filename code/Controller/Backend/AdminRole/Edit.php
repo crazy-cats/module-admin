@@ -16,32 +16,31 @@ use CrazyCat\Admin\Model\Admin\Role as Model;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Edit extends \CrazyCat\Framework\App\Component\Module\Controller\Backend\AbstractAction {
-
+class Edit extends \CrazyCat\Framework\App\Component\Module\Controller\Backend\AbstractAction
+{
     protected function execute()
     {
         /* @var $model \CrazyCat\Framework\App\Component\Module\Model\AbstractModel */
-        $model = $this->objectManager->create( Model::class );
+        $model = $this->objectManager->create(Model::class);
 
-        if ( ( $id = $this->request->getParam( 'id' ) ) ) {
-            $model->load( $id );
-            if ( !$model->getId() ) {
-                $this->messenger->addError( __( 'Item with specified ID does not exist.' ) );
-                return $this->redirect( 'admin/admin_role' );
+        if (($id = $this->request->getParam('id'))) {
+            $model->load($id);
+            if (!$model->getId()) {
+                $this->messenger->addError(__('Item with specified ID does not exist.'));
+                return $this->redirect('admin/admin_role');
             }
-            if ( !$this->objectManager->get( Permission::class )->canAccessRole( $model ) ) {
-                $this->messenger->addError( __( 'You do not have the permission.' ) );
-                return $this->redirect( 'admin/admin_role' );
+            if (!$this->objectManager->get(Permission::class)->canAccessRole($model)) {
+                $this->messenger->addError(__('You do not have the permission.'));
+                return $this->redirect('admin/admin_role');
             }
         }
 
-        $this->registry->register( 'current_model', $model );
+        $this->registry->register('current_model', $model);
 
         $pageTitle = $model->getId() ?
-                __( 'Edit Administrator Role `%1` [ ID: %2 ]', [ $model->getTitle(), $model->getId() ] ) :
-                __( 'Create Administrator Role' );
+            __('Edit Administrator Role `%1` [ ID: %2 ]', [$model->getTitle(), $model->getId()]) :
+            __('Create Administrator Role');
 
-        $this->setPageTitle( $pageTitle )->render();
+        $this->setPageTitle($pageTitle)->render();
     }
-
 }

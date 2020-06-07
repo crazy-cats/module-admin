@@ -16,20 +16,19 @@ use CrazyCat\Admin\Model\Admin\Role\Collection;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Grid extends \CrazyCat\Base\Controller\Backend\AbstractGridAction {
-
+class Grid extends \CrazyCat\Base\Controller\Backend\AbstractGridAction
+{
     protected function construct()
     {
-        $this->init( Collection::class, GridBlock::class );
+        $this->init(Collection::class, GridBlock::class);
 
         /**
          * Non-super administrator is only able to access roles
          *     of which level are lower than him/her.
          */
         $adminRole = $this->session->getAdmin()->getRole();
-        if ( !$adminRole->getIsSuper() ) {
-            $this->collection->addFieldToFilter( 'path', [ 'like' => $adminRole->getPath() . '/%' ] );
+        if (!$adminRole->getIsSuper()) {
+            $this->collection->addFieldToFilter('path', ['like' => $adminRole->getPath() . '/%']);
         }
     }
-
 }

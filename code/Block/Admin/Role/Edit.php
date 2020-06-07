@@ -7,19 +7,14 @@
 
 namespace CrazyCat\Admin\Block\Admin\Role;
 
-use CrazyCat\Admin\Model\Session;
-use CrazyCat\Admin\Model\Source\AdminRoles;
-use CrazyCat\Admin\Model\Source\Permissions;
-use CrazyCat\Base\Block\Backend\Context;
-
 /**
  * @category CrazyCat
  * @package  CrazyCat\Admin
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Edit extends \CrazyCat\Base\Block\Backend\AbstractEdit {
-
+class Edit extends \CrazyCat\Base\Block\Backend\AbstractEdit
+{
     /**
      * @var \CrazyCat\Admin\Model\Source\AdminRoles
      */
@@ -35,9 +30,14 @@ class Edit extends \CrazyCat\Base\Block\Backend\AbstractEdit {
      */
     private $session;
 
-    public function __construct( Session $session, AdminRoles $adminRoles, Permissions $permissions, Context $context, array $data = [] )
-    {
-        parent::__construct( $context, $data );
+    public function __construct(
+        \CrazyCat\Admin\Model\Session $session,
+        \CrazyCat\Admin\Model\Source\AdminRoles $adminRoles,
+        \CrazyCat\Admin\Model\Source\Permissions $permissions,
+        \CrazyCat\Base\Block\Backend\Context $context,
+        array $data = []
+    ) {
+        parent::__construct($context, $data);
 
         $this->adminRoles = $adminRoles;
         $this->permissions = $permissions;
@@ -46,25 +46,41 @@ class Edit extends \CrazyCat\Base\Block\Backend\AbstractEdit {
 
     /**
      * @return array
+     * @throws \ReflectionException
      */
     public function getFields()
     {
         /**
          * Only super administrator can assign a role under ROOT.
          */
-        $parentOptions = $this->adminRoles->toOptionArray( $this->registry->registry( 'current_model' )->getId() );
-        if ( $this->session->getAdmin()->getRole()->getIsSuper() ) {
-            array_unshift( $parentOptions, [ 'label' => '[ ROOT ]', 'value' => 0 ] );
+        $parentOptions = $this->adminRoles->toOptionArray($this->registry->registry('current_model')->getId());
+        if ($this->session->getAdmin()->getRole()->getIsSuper()) {
+            array_unshift($parentOptions, ['label' => '[ ROOT ]', 'value' => 0]);
         }
 
         return [
             'general' => [
-                'label' => __( 'General' ),
+                'label'  => __('General'),
                 'fields' => [
-                        [ 'name' => 'id', 'label' => __( 'ID' ), 'type' => 'hidden' ],
-                        [ 'name' => 'title', 'label' => __( 'Role Title' ), 'type' => 'text', 'validation' => [ 'required' => true ] ],
-                        [ 'name' => 'parent_id', 'label' => __( 'Parent Role' ), 'type' => 'select', 'options' => $parentOptions ],
-                        [ 'name' => 'permissions', 'label' => __( 'Permissions' ), 'type' => 'multiselect', 'options' => $this->permissions->toOptionArray() ]
+                    ['name' => 'id', 'label' => __('ID'), 'type' => 'hidden'],
+                    [
+                        'name'       => 'title',
+                        'label'      => __('Role Title'),
+                        'type'       => 'text',
+                        'validation' => ['required' => true]
+                    ],
+                    [
+                        'name'    => 'parent_id',
+                        'label'   => __('Parent Role'),
+                        'type'    => 'select',
+                        'options' => $parentOptions
+                    ],
+                    [
+                        'name'    => 'permissions',
+                        'label'   => __('Permissions'),
+                        'type'    => 'multiselect',
+                        'options' => $this->permissions->toOptionArray()
+                    ]
                 ]
             ]
         ];
@@ -75,7 +91,6 @@ class Edit extends \CrazyCat\Base\Block\Backend\AbstractEdit {
      */
     public function getActionUrl()
     {
-        return $this->getUrl( 'admin/admin_role/save' );
+        return $this->getUrl('admin/admin_role/save');
     }
-
 }

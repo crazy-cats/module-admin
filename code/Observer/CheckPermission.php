@@ -53,10 +53,10 @@ class CheckPermission
         } elseif (!in_array(
             $requestPath,
             [
-                'system/translate/source',
                 'system/index/login',
                 'system/index/login_post',
-                'system/index/logout'
+                'system/index/logout',
+                'system/translate/source'
             ]
         )) {
             $observer->getAction()->skipRunning()->redirect('system/index/login');

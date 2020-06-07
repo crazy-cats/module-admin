@@ -8,8 +8,6 @@
 namespace CrazyCat\Admin\Observer;
 
 use CrazyCat\Admin\Model\Admin;
-use CrazyCat\Admin\Model\Session;
-use CrazyCat\Framework\App\ObjectManager;
 
 /**
  * @category CrazyCat
@@ -17,8 +15,8 @@ use CrazyCat\Framework\App\ObjectManager;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class ProcessLogin {
-
+class ProcessLogin
+{
     /**
      * @var \CrazyCat\Framework\App\ObjectManager
      */
@@ -29,8 +27,10 @@ class ProcessLogin {
      */
     private $session;
 
-    public function __construct( ObjectManager $objectManager, Session $session )
-    {
+    public function __construct(
+        \CrazyCat\Framework\App\ObjectManager $objectManager,
+        \CrazyCat\Admin\Model\Session $session
+    ) {
         $this->objectManager = $objectManager;
         $this->session = $session;
     }
@@ -38,12 +38,12 @@ class ProcessLogin {
     /**
      * @param \CrazyCat\Framework\Data\DataObject $observer
      * @return void
+     * @throws \ReflectionException
      */
-    public function execute( $observer )
+    public function execute($observer)
     {
         $post = $observer->getPost();
-        $admin = $this->objectManager->create( Admin::class )->login( $post['username'], $post['password'] );
-        $this->session->setAdminId( $admin->getData( 'id' ) );
+        $admin = $this->objectManager->create(Admin::class)->login($post['username'], $post['password']);
+        $this->session->setAdminId($admin->getData('id'));
     }
-
 }

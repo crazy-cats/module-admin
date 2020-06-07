@@ -13,11 +13,10 @@ namespace CrazyCat\Admin\Model\Log;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Collection extends \CrazyCat\Framework\App\Component\Module\Model\AbstractCollection {
-
+class Collection extends \CrazyCat\Framework\App\Component\Module\Model\AbstractCollection
+{
     protected function construct()
     {
-        $this->init( 'CrazyCat\Admin\Model\Log' );
+        $this->init(\CrazyCat\Admin\Model\Log::class);
     }
-
 }

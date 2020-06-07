@@ -18,37 +18,37 @@ use CrazyCat\Framework\App\Timezone;
  * @author   Liwei Zeng <zengliwei@163.com>
  * @link     https://crazy-cat.cn
  */
-class Grid extends \CrazyCat\Base\Controller\Backend\AbstractGridAction {
-
+class Grid extends \CrazyCat\Base\Controller\Backend\AbstractGridAction
+{
     protected function construct()
     {
-        $this->init( Collection::class, GridBlock::class );
+        $this->init(Collection::class, GridBlock::class);
     }
 
     /**
      * @param array $collectionData
      * @return array
+     * @throws \ReflectionException
      */
-    protected function processData( $collectionData )
+    protected function processData($collectionData)
     {
         $adminIds = [];
-        foreach ( $collectionData['items'] as $item ) {
+        foreach ($collectionData['items'] as $item) {
             $adminIds[] = $item['admin_id'];
         }
 
         /* @var $adminCollection \CrazyCat\Admin\Model\Admin\Collection */
-        $adminCollection = $this->objectManager->create( AdminCollection::class )
-                ->addFieldToFilter( 'id', [ 'in' => array_unique( $adminIds ) ] );
+        $adminCollection = $this->objectManager->create(AdminCollection::class)
+            ->addFieldToFilter('id', ['in' => array_unique($adminIds)]);
 
         /* @var $timezone \CrazyCat\Framework\App\Timezone */
-        $timezone = $this->objectManager->get( Timezone::class );
+        $timezone = $this->objectManager->get(Timezone::class);
 
-        foreach ( $collectionData['items'] as &$item ) {
-            $adminModel = $adminCollection->getItemById( $item['admin_id'] );
-            $item['admin_id'] = sprintf( '%s ( ID: %d )', $adminModel->getData( 'name' ), $adminModel->getId() );
-            $item['created_at'] = $timezone->getDateTime( $item['created_at'] );
+        foreach ($collectionData['items'] as &$item) {
+            $adminModel = $adminCollection->getItemById($item['admin_id']);
+            $item['admin_id'] = sprintf('%s ( ID: %d )', $adminModel->getData('name'), $adminModel->getId());
+            $item['created_at'] = $timezone->getDateTime($item['created_at']);
         }
         return $collectionData;
     }
-
 }

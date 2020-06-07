@@ -17,6 +17,6 @@ class Collection extends \CrazyCat\Framework\App\Component\Module\Model\Abstract
 {
     protected function construct()
     {
-        $this->init('CrazyCat\Admin\Model\Admin');
+        $this->init(\CrazyCat\Admin\Model\Admin::class);
     }
 }

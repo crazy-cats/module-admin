@@ -13,19 +13,25 @@
  */
 return [
     'template' => '2columns_left',
-    'blocks' => [
+    'blocks'   => [
         'header' => [
             'header-buttons' => [
                 'class' => 'CrazyCat\Base\Block\Template',
-                'data' => [
+                'data'  => [
                     'template' => 'CrazyCat\Base::header_buttons',
-                    'buttons' => [
-                        'new' => [ 'label' => __( 'Create New' ), 'action' => [ 'type' => 'redirect', 'params' => [ 'url' => $this->getUrl( 'admin/admin_role/edit' ) ] ] ]
+                    'buttons'  => [
+                        'new' => [
+                            'label'  => __('Create New'),
+                            'action' => [
+                                'type'   => 'redirect',
+                                'params' => ['url' => $this->getUrl('admin/admin_role/edit')]
+                            ]
+                        ]
                     ]
                 ]
             ]
         ],
-        'main' => [
+        'main'   => [
             'grid-form' => [
                 'class' => 'CrazyCat\Admin\Block\Admin\Role\Grid'
             ]
