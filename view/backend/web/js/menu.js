@@ -26,9 +26,11 @@ define(['jquery', 'utility'], function ($, utility) {
         };
 
         let currentPath = getUrlPath(window.location.href);
+        let parentPath = currentPath ? currentPath.substr(currentPath.indexOf('/', 1)) + 'index/' : false;
         menu.find('a').each(function () {
             let el = $(this);
-            if (getUrlPath(el.attr('href')) === currentPath) {
+            let urlPath = getUrlPath(el.attr('href'));
+            if (urlPath === currentPath || urlPath == parentPath) {
                 el.addClass('current');
             }
         });

@@ -27,7 +27,7 @@ return [
                                 'confirm' => __('Sure you want to remove selected item(s)?'),
                                 'params'  => [
                                     'target' => '#grid-form',
-                                    'action' => $this->getUrl('admin/admin/massdelete')
+                                    'action' => getUrl('admin/admin/massdelete')
                                 ]
                             ]
                         ],
@@ -35,7 +35,7 @@ return [
                             'label'  => __('Create New'),
                             'action' => [
                                 'type'   => 'redirect',
-                                'params' => ['url' => $this->getUrl('admin/admin/edit')]
+                                'params' => ['url' => getUrl('admin/admin/edit')]
                             ]
                         ]
                     ]

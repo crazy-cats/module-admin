@@ -24,7 +24,7 @@ return [
                             'label'  => __('Create New'),
                             'action' => [
                                 'type'   => 'redirect',
-                                'params' => ['url' => $this->getUrl('admin/admin_role/edit')]
+                                'params' => ['url' => getUrl('admin/admin_role/edit')]
                             ]
                         ]
                     ]

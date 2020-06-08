@@ -24,7 +24,7 @@ return [
                             'label'  => __('Back'),
                             'action' => [
                                 'type'   => 'redirect',
-                                'params' => ['url' => $this->getUrl('admin/admin_role')]
+                                'params' => ['url' => getUrl('admin/admin_role')]
                             ]
                         ],
                         'save'          => [
