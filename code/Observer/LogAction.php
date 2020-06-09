@@ -9,7 +9,6 @@ namespace CrazyCat\Admin\Observer;
 
 use CrazyCat\Admin\Model\Log;
 use CrazyCat\Framework\App\Io\Http\Request;
-use CrazyCat\Framework\Utility\Http;
 
 /**
  * @category CrazyCat
@@ -19,6 +18,11 @@ use CrazyCat\Framework\Utility\Http;
  */
 class LogAction
 {
+    /**
+     * @var \CrazyCat\Framework\Utility\Http
+     */
+    private $httpHelper;
+
     /**
      * @var \CrazyCat\Framework\App\ObjectManager
      */
@@ -31,8 +35,10 @@ class LogAction
 
     public function __construct(
         \CrazyCat\Admin\Model\Session $session,
-        \CrazyCat\Framework\App\ObjectManager $objectManager
+        \CrazyCat\Framework\App\ObjectManager $objectManager,
+        \CrazyCat\Framework\Utility\Http $httpHelper
     ) {
+        $this->httpHelper = $httpHelper;
         $this->objectManager = $objectManager;
         $this->session = $session;
     }
@@ -40,6 +46,7 @@ class LogAction
     /**
      * @param \CrazyCat\Framework\App\Io\Http\Request $request
      * @return bool
+     * @throws \ReflectionException
      */
     private function filterActions($request)
     {
@@ -73,7 +80,7 @@ class LogAction
                 'admin_id'   => $this->session->getAdmin()->getId(),
                 'action'     => $request->getFullPath('/'),
                 'data'       => json_encode($request->getParams()),
-                'ip'         => Http::getRemoteIp(),
+                'ip'         => $this->httpHelper->getRemoteIp(),
                 'created_at' => date('Y-m-d H:i:s')
             ]
         )->save();
