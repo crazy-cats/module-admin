@@ -23,7 +23,7 @@ class MassDelete extends \CrazyCat\Framework\App\Component\Module\Controller\Bac
         $success = false;
 
         if (empty($ids = $this->request->getParam('ids'))) {
-            $message = __('Please specifiy an item.');
+            $message = __('Please specify an item.');
         } else {
             $model = $this->objectManager->create(Admin::class);
             foreach ($ids as $id) {
