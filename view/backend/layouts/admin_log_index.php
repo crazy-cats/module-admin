@@ -15,8 +15,10 @@ return [
     'template' => '2columns_left',
     'blocks'   => [
         'main' => [
-            'grid-form' => [
-                'class' => 'CrazyCat\Admin\Block\Log\Grid'
+            'children' => [
+                'grid-form' => [
+                    'class' => 'CrazyCat\Admin\Block\Log\Grid'
+                ]
             ]
         ]
     ]
